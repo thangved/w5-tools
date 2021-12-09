@@ -36,6 +36,9 @@ const GradeProvider = ({ children }) => {
             console.log(e, sum, weights);
         });
 
+        if (weights === 0)
+            return setAvg(0);
+
         let avg = `${sum / weights}`;
         avg = avg.split('.');
         avg[1] = avg[1].slice(0, 2) || 0;
@@ -43,7 +46,6 @@ const GradeProvider = ({ children }) => {
 
         if (weights !== 0)
             setAvg(avg);
-        else setAvg(0);
     }, [courses])
 
     return (
