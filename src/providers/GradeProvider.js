@@ -33,7 +33,6 @@ const GradeProvider = ({ children }) => {
         courses.forEach(e => {
             weights += Number(e.weight);
             sum += e.four * Number(e.weight);
-            console.log(e, sum, weights);
         });
 
         if (weights === 0)
@@ -41,7 +40,7 @@ const GradeProvider = ({ children }) => {
 
         let avg = `${sum / weights}`;
         avg = avg.split('.');
-        avg[1] = avg[1].slice(0, 2) || 0;
+        avg[1] = avg[1]?.slice(0, 2) || 0;
         avg = avg.join('.');
 
         if (weights !== 0)
