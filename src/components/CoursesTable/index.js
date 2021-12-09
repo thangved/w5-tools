@@ -1,4 +1,5 @@
-import { Affix, Button, Statistic, Table } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons/lib/icons';
+import { Button, Space, Statistic, Table } from 'antd';
 import { useContext, useState } from 'react';
 
 import { Grade } from './../../providers/GradeProvider';
@@ -39,36 +40,47 @@ const columns = [
 const CoursesTable = () => {
 	const { courses, avg, removeCourses } = useContext(Grade);
 	const [selected, setSelected] = useState([]);
+	const [deleting, setDeleting] = useState(false);
 
 	return (
-		<>
+		<Space
+			direction="vertical"
+			style={{
+				width: '100%'
+			}}>
 			<Button
-				disabled={selected.length === 0}
-				type="primary"
-				onClick={() => removeCourses(selected)}
+				danger
+				icon={<DeleteOutlined />}
+				disabled={selected.length === 0 || courses.length === 0}
+				loading={deleting}
+				onClick={() => {
+					setDeleting(true);
+					setTimeout(()=>{
+						removeCourses(selected)
+						setDeleting(false);
+					}, 500);
+				}}
 			>
 				Xóa
 			</Button>
-			<Affix>
-				<div
-					style={{
-						width: '100%',
-						overflow: 'auto',
+			<div
+				style={{
+					width: '100%',
+					overflow: 'auto',
+				}}
+			>
+				<Table
+					rowSelection={{
+						selectedRowKeys: selected,
+						onChange: (keys) => setSelected(keys),
 					}}
-				>
-					<Table
-						rowSelection={{
-							selectedRowKeys: selected,
-							onChange: (keys) => setSelected(keys),
-						}}
-						pagination={{ pageSize: 10 }}
-						dataSource={courses}
-						columns={columns}
-					/>
-				</div>
-				<Statistic title="Điểm trung bình" value={avg || 0} />
-			</Affix>
-		</>
+					pagination={{ pageSize: 9 }}
+					dataSource={courses}
+					columns={columns}
+				/>
+			</div>
+			<Statistic title="Điểm trung bình" value={avg || 0} />
+		</Space>
 	);
 };
 

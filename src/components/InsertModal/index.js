@@ -1,11 +1,11 @@
-import { Button, Form, InputNumber, message } from 'antd';
+import { Descriptions, InputNumber, message } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import Modal from 'antd/lib/modal/Modal';
 
 import { Grade } from './../../providers/GradeProvider';
 import exChange from './ExChange';
 
-const InsertModal = ({ visible, course, onClose = () => {} }) => {
+const InsertModal = ({ visible, course, onClose = () => { } }) => {
 	const { addCourses } = useContext(Grade);
 
 	const [digit, setDigit] = useState(0);
@@ -31,29 +31,40 @@ const InsertModal = ({ visible, course, onClose = () => {} }) => {
 				});
 				onClose();
 				message.success('Đã thêm học phần.');
+				setDigit(10);
 			}}
 		>
 			<h2>{course.name}</h2>
 			<h3>{course.key}</h3>
-			<Form>
-				<Form.Item label="Điểm thang 10">
+			<Descriptions layout="vertical" bordered>
+				<Descriptions.Item span={4} label="Điểm thang 10">
 					<InputNumber
 						max={10}
 						min={0}
+						style={{ width: '100%' }}
 						onChange={(value) => setDigit(value)}
+						onKeyPress={event => {
+							if (event.key === 'Enter') {
+								addCourses({
+									...course,
+									digit,
+									four,
+									txt,
+								});
+								onClose();
+								message.success('Đã thêm học phần.');
+								setDigit(10);
+							}
+						}}
 					/>
-				</Form.Item>
-				<Form.Item label="Điểm thang 4">
-					<Button disabled type="dash">
-						{four}
-					</Button>
-				</Form.Item>
-				<Form.Item label="Điểm chữ">
-					<Button disabled type="dash">
-						{txt}
-					</Button>
-				</Form.Item>
-			</Form>
+				</Descriptions.Item>
+				<Descriptions.Item span={4} label="Điểm thang 4">
+					{four}
+				</Descriptions.Item>
+				<Descriptions.Item span={4} label="Điểm chữ">
+					{txt}
+				</Descriptions.Item>
+			</Descriptions>
 		</Modal>
 	);
 };

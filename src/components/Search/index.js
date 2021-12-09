@@ -68,11 +68,13 @@ const Search = () => {
 					</div>
 				)}
 				<List
+					pagination={{ pageSize: 9 }}
 					dataSource={courses}
 					renderItem={(course) => (
 						<List.Item
 							actions={[
 								<Button
+									type="link"
 									onClick={() => {
 										setInsert({
 											course,
