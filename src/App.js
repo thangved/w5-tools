@@ -1,4 +1,4 @@
-import { Affix, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import 'antd/dist/antd.css';
 
 import './App.css';
@@ -20,9 +20,7 @@ function App() {
             <Search />
           </Col>
           <Col lg={16} md={16} xs={24}>
-            <Affix>
-              <CoursesTable />
-            </Affix>
+            <CoursesTable />
           </Col>
         </Row>
       </Content>

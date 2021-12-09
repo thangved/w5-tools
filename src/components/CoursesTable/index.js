@@ -1,4 +1,4 @@
-import { Button, Statistic, Table } from "antd"
+import { Affix, Button, Statistic, Table } from "antd"
 import { useContext, useState } from "react"
 import { Grade } from './../../providers/GradeProvider';
 
@@ -38,6 +38,7 @@ const columns = [
 const CoursesTable = () => {
     const { courses, avg, removeCourses } = useContext(Grade);
     const [selected, setSelected] = useState([]);
+
     return (
         <>
             <Button
@@ -46,14 +47,22 @@ const CoursesTable = () => {
                 onClick={() => removeCourses(selected)}>
                 Xóa
             </Button>
-            <Table
-                rowSelection={{
-                    selectedRowKeys: selected,
-                    onChange: keys => setSelected(keys)
-                }}
-                dataSource={courses}
-                columns={columns} />
-            <Statistic title="Điểm trung bình" value={avg || 0} />
+            <Affix>
+                <div style={{
+                    width: '100%',
+                    overflow: 'auto',
+                }}>
+                    <Table
+                        rowSelection={{
+                            selectedRowKeys: selected,
+                            onChange: keys => setSelected(keys)
+                        }}
+                        pagination={{ pageSize: 10 }}
+                        dataSource={courses}
+                        columns={columns} />
+                </div>
+                <Statistic title="Điểm trung bình" value={avg || 0} />
+            </Affix>
         </>
     )
 }
