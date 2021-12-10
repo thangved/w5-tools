@@ -2,8 +2,8 @@ import { Descriptions, InputNumber, message } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import Modal from 'antd/lib/modal/Modal';
 
-import { Grade } from './../../providers/GradeProvider';
 import exChange from './ExChange';
+import { Grade } from '../../../providers/GradeProvider';
 
 const InsertModal = ({ visible, course, onClose = () => { } }) => {
 	const { addCourses } = useContext(Grade);

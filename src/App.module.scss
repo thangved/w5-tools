@@ -1,6 +1,11 @@
-.wrapper {
+.fallback {
+	position: fixed;
 	display: flex;
 	justify-content: center;
-	min-height: 100vh;
-	padding: 10px;
+	align-items: center;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #ffffff90;
 }

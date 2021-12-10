@@ -1,32 +1,70 @@
 import { Content, Header } from 'antd/lib/layout/layout';
-import { Col, Row } from 'antd';
+import { Empty, Layout, Spin } from 'antd';
 import 'antd/dist/antd.css';
 
-import GradeProvider from './providers/GradeProvider';
-import CoursesTable from './components/CoursesTable';
-import Search from './components/Search/index';
 import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import styles from './App.module.scss';
+import Home from './components/Home/Home';
+
+const Grade = lazy(() => import('./components/Grade'));
 
 function App() {
 	return (
-		<GradeProvider>
-			<Header />
-			<Content>
-				<Row
-					style={{
-						flex: 1,
-						padding: 10,
-					}}
-				>
-					<Col lg={8} md={8} xs={24}>
-						<Search />
-					</Col>
-					<Col lg={16} md={16} xs={24}>
-						<CoursesTable />
-					</Col>
-				</Row>
-			</Content>
-		</GradeProvider>
+		<BrowserRouter>
+			<Layout style={{
+				minHeight: '100vh',
+				display: 'flex',
+				flexDirection: 'row',
+			}}>
+				<Navbar />
+				<Layout style={{ flex: 1 }}>
+					<Header />
+					<Content>
+						<Suspense fallback={
+							<div className={styles.fallback}>
+								<Spin />
+							</div>
+						}>
+							<Routes>
+								<Route
+									path="//"
+									element={<Home />} />
+								<Route
+									path="/grade"
+									element={<Grade />} />
+								<Route
+									path="timetable"
+									element={<div style={{
+										width: '100%',
+										height: '100%',
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+									}}>
+										<Empty
+											description={
+												<span>
+													Hiện tính năng này đang phát triển<br />
+													Bạn có thể dùng phiên bản tương đương
+													<a
+														target="_blank"
+														href="https://minhthangdev.pw/tools/timetable"
+														rel="noreferrer">
+														{' tại đây'}
+													</a>.
+												</span>
+											} />
+									</div>}
+								/>
+							</Routes>
+						</Suspense>
+					</Content>
+				</Layout>
+			</Layout>
+		</BrowserRouter>
 	);
 }
 

@@ -2,8 +2,9 @@ import { Button, Form, Input, List, message, Spin } from 'antd';
 import { useState } from 'react';
 import axios from 'axios';
 
-import { AppConfigs } from '../../configs/AppConfigs';
-import InsertModal from '../InsertModal';
+import { AppConfigs } from '../../../configs/AppConfigs';
+import InsertModal from '../InsertModal/index';
+import { SearchOutlined } from '@ant-design/icons/lib/icons';
 
 const Search = () => {
 	const [courses, setCourses] = useState([]);
@@ -37,7 +38,7 @@ const Search = () => {
 				<Input.Group style={{ width: '100%' }} compact>
 					<Input
 						style={{
-							width: `calc(100% - ${loading ? 120 : 100}px)`,
+							width: `calc(100% - 120px)`,
 						}}
 						placeholder="Tìm kiếm học phần"
 						onChange={(event) => setKeyword(event.target.value)}
@@ -45,7 +46,11 @@ const Search = () => {
 							if (event.key === 'Enter') onSearch();
 						}}
 					/>
-					<Button type="primary" loading={loading} onClick={onSearch}>
+					<Button
+						icon={<SearchOutlined />}
+						type="primary"
+						loading={loading}
+						onClick={onSearch}>
 						Tìm kiếm
 					</Button>
 				</Input.Group>
