@@ -7,13 +7,12 @@ import styles from './Navbar.module.scss';
 import { useState } from 'react';
 
 const Navbar = () => {
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
     const navigate = useNavigate();
 
     return (
         <Sider
             theme="light"
-            collapsible
             collapsed={collapsed}
             onCollapse={setCollapsed}>
             <Link

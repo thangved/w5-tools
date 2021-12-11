@@ -1,10 +1,14 @@
 import { Avatar, Card, Col, Row } from "antd";
+import { Helmet } from "react-helmet";
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const navigate = useNavigate();
     return (
         <Row>
+            <Helmet>
+                <title>Home - W5 TOOLS</title>
+            </Helmet>
             <Col lg={4} xs={24}>
                 <Card
                     hoverable

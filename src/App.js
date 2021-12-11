@@ -1,5 +1,5 @@
 import { Content, Header } from 'antd/lib/layout/layout';
-import { Empty, Layout, Spin } from 'antd';
+import { Layout, Spin } from 'antd';
 import 'antd/dist/antd.css';
 
 import './App.css';
@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React, { lazy, Suspense } from 'react';
 import styles from './App.module.scss';
 import Home from './components/Home/Home';
+import TimeTable from './components/TimeTable';
 
 const Grade = lazy(() => import('./components/Grade'));
 
@@ -37,27 +38,7 @@ function App() {
 									element={<Grade />} />
 								<Route
 									path="timetable"
-									element={<div style={{
-										width: '100%',
-										height: '100%',
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-									}}>
-										<Empty
-											description={
-												<span>
-													Hiện tính năng này đang phát triển<br />
-													Bạn có thể dùng phiên bản tương đương
-													<a
-														target="_blank"
-														href="https://minhthangdev.pw/tools/timetable"
-														rel="noreferrer">
-														{' tại đây'}
-													</a>.
-												</span>
-											} />
-									</div>}
+									element={<TimeTable />}
 								/>
 							</Routes>
 						</Suspense>

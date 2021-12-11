@@ -9,31 +9,37 @@ const columns = [
 		title: 'Mã học phần',
 		dataIndex: 'key',
 		key: 'key',
+		with: 100,
 	},
 	{
 		title: 'Tên học phần',
 		dataIndex: 'name',
 		key: 'name',
+		with: 100,
 	},
 	{
 		title: 'Số tín chỉ',
 		dataIndex: 'weight',
 		key: 'weight',
+		with: 100,
 	},
 	{
 		title: 'Điểm thang 10',
 		dataIndex: 'digit',
 		key: 'digit',
+		with: 100,
 	},
 	{
 		title: 'Điểm thang 4',
 		dataIndex: 'four',
 		key: 'four',
+		with: 100,
 	},
 	{
 		title: 'Điểm chữ',
 		dataIndex: 'txt',
 		key: 'txt',
+		with: 100,
 	},
 ];
 
@@ -45,7 +51,8 @@ const CoursesTable = () => {
 		<Space
 			direction="vertical"
 			style={{
-				width: '100%'
+				maxWidth: 'calc(100vw - 100px)',
+				overflow: 'auto',
 			}}>
 			<Popconfirm
 				title={`Bạn chắc chắn muốn xóa ${selected.length} học phần?`}
@@ -78,6 +85,7 @@ const CoursesTable = () => {
 					pagination={{ pageSize: 9 }}
 					dataSource={courses}
 					columns={columns}
+					scroll={{ x: 600, y: '100vh' }}
 				/>
 			</div>
 			<Descriptions

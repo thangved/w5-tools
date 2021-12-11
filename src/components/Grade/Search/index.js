@@ -17,7 +17,7 @@ const Search = () => {
 
 	const onSearch = () => {
 		if (keyword.length < 3)
-			return message.info('Vui lòng nhập ít nhất 3 ký tự');
+			return message.warn('Vui lòng nhập ít nhất 3 ký tự');
 		if (loading) return;
 		message.loading('Đang tìm kiếm', 1);
 		setLoading(true);
