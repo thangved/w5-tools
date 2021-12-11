@@ -171,4 +171,4 @@ const TimeTableProvider = ({ children }) => {
     )
 }
 
-export default TimeTableProvider
+export default TimeTableProvider;

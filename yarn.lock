@@ -9765,6 +9765,13 @@ react-text-loop-next@^0.0.3:
     cxs "^6.2.0"
     react-motion "^0.5.2"
 
+react-to-print@^2.14.1:
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.14.1.tgz#b6c74e9ed37520092a0863386ceb9b5525065941"
+  integrity sha512-2PWKhONAYHpWELAiclcGbyN3xG0Li37hnMVdNtSwGyOT3O6BpB+GiqaT4pqnvuDTPFTZdfjL4fmvY6HxcdQ6sw==
+  dependencies:
+    prop-types "^15.7.2"
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"

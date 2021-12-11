@@ -2,6 +2,7 @@ import { Alert, Table, Typography } from "antd"
 import { useContext } from "react"
 import { TextLoop } from "react-text-loop-next";
 import { TimeTable } from '../../../providers/TimeTableProvider';
+import Print from "./Print";
 
 const columns = [
     {
@@ -51,11 +52,12 @@ const columns = [
 
 const GroupTable = () => {
     const { matrix, groups } = useContext(TimeTable);
+
+
+
     return (
-        <div style={{
-            maxWidth: 'calc(100vw - 100px)',
-            overflow: 'auto',
-        }}>
+
+        <>
             <Alert key="-1"
                 message={<TextLoop>
                     <Typography.Title
@@ -80,53 +82,64 @@ const GroupTable = () => {
                     }
 
                 </TextLoop>}
+                action={[
+                    <Print matrix={matrix} />
+                ]}
             />
-            <Alert
-                key="0"
-                message={
-                    <Typography.Title level={4}>
-                        Buổi sáng
-                    </Typography.Title>
-                } />
-            <Table
-                bordered
-                size="small"
-                scroll={{ x: 950, y: '100vh' }}
-                dataSource={matrix.slice(0, 5)}
-                columns={columns}
-                pagination={false}
-            />
-            <Alert
-                key="2"
-                message={
-                    <Typography.Title level={4}>
-                        Buổi chiều
-                    </Typography.Title>
-                } />
-            <Table
-                bordered
-                size="small"
-                scroll={{ x: 950, y: '100vh' }}
-                dataSource={matrix.slice(5, 9)}
-                columns={columns}
-                pagination={false}
-            />
-            <Alert
-                key="4"
-                message={
-                    <Typography.Title level={4}>
-                        Buổi tối
-                    </Typography.Title>
-                } />
-            <Table
-                bordered
-                size="small"
-                scroll={{ x: 950, y: '100vh' }}
-                dataSource={matrix.slice(9)}
-                columns={columns}
-                pagination={false}
-            />
-        </div>
+
+            <div
+                style={{
+                    maxWidth: 'calc(100vw - 100px)',
+                    overflow: 'auto',
+                }}>
+
+                <Alert
+                    key="0"
+                    message={
+                        <Typography.Title level={4}>
+                            Buổi sáng
+                        </Typography.Title>
+                    } />
+                <Table
+                    bordered
+                    size="small"
+                    scroll={{ x: 950, y: '100vh' }}
+                    dataSource={matrix.slice(0, 5)}
+                    columns={columns}
+                    pagination={false}
+                />
+                <Alert
+                    key="2"
+                    message={
+                        <Typography.Title level={4}>
+                            Buổi chiều
+                        </Typography.Title>
+                    } />
+                <Table
+                    bordered
+                    size="small"
+                    scroll={{ x: 950, y: '100vh' }}
+                    dataSource={matrix.slice(5, 9)}
+                    columns={columns}
+                    pagination={false}
+                />
+                <Alert
+                    key="4"
+                    message={
+                        <Typography.Title level={4}>
+                            Buổi tối
+                        </Typography.Title>
+                    } />
+                <Table
+                    bordered
+                    size="small"
+                    scroll={{ x: 950, y: '100vh' }}
+                    dataSource={matrix.slice(9)}
+                    columns={columns}
+                    pagination={false}
+                />
+            </div>
+        </>
     )
 }
 

@@ -1,4 +1,4 @@
-import { Alert, Descriptions, Select } from "antd"
+import { Alert, Descriptions, message, Select } from "antd"
 import Modal from "antd/lib/modal/Modal"
 import { useState, useEffect, useContext } from "react"
 import axios from 'axios';
@@ -29,6 +29,8 @@ const InsertModal = ({ visible, courseKey, data, onClose = () => { } }) => {
             visible={visible}
             onCancel={onClose}
             onOk={() => {
+                if (!selected)
+                    return message.error('Vui lòng chọn nhóm học phần!');
                 addGroup(selected);
                 onClose();
             }}
