@@ -9,37 +9,38 @@ const columns = [
 		title: 'Mã học phần',
 		dataIndex: 'key',
 		key: 'key',
-		with: 100,
+		width: 150,
+		fixed: 'left',
 	},
 	{
 		title: 'Tên học phần',
 		dataIndex: 'name',
 		key: 'name',
-		with: 100,
+		width: 150,
 	},
 	{
 		title: 'Số tín chỉ',
 		dataIndex: 'weight',
 		key: 'weight',
-		with: 100,
+		width: 150,
 	},
 	{
 		title: 'Điểm thang 10',
 		dataIndex: 'digit',
 		key: 'digit',
-		with: 100,
+		width: 150,
 	},
 	{
 		title: 'Điểm thang 4',
 		dataIndex: 'four',
 		key: 'four',
-		with: 100,
+		width: 150,
 	},
 	{
 		title: 'Điểm chữ',
 		dataIndex: 'txt',
 		key: 'txt',
-		with: 100,
+		with: 150,
 	},
 ];
 
@@ -71,28 +72,22 @@ const CoursesTable = () => {
 					Xóa
 				</Button>
 			</Popconfirm>
-			<div
-				style={{
-					width: '100%',
-					overflow: 'auto',
+			<Table
+				bordered
+				rowSelection={{
+					selectedRowKeys: selected,
+					onChange: (keys) => setSelected(keys),
 				}}
-			>
-				<Table
-					rowSelection={{
-						selectedRowKeys: selected,
-						onChange: (keys) => setSelected(keys),
-					}}
-					pagination={{ pageSize: 9 }}
-					dataSource={courses}
-					columns={columns}
-					scroll={{ x: 600, y: '100vh' }}
-				/>
-			</div>
+				pagination={{ pageSize: 9 }}
+				dataSource={courses}
+				columns={columns}
+				scroll={{ x: 900, y: '100vh' }}
+			/>
 			<Descriptions
 				layout="vertical"
 				bordered>
 				<Descriptions.Item
-					span={100}
+					span={4}
 					key="avg"
 					label="Điểm trung bình">
 					<Progress

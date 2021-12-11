@@ -1,6 +1,6 @@
-# Công cụ tính điểm trung bình CTU
+# TOOLS FROM W5
 
-<https://ctugradetool.web.app>
+<https://w5tools.web.app>
 
 Ngôn ngữ sử dụng: Reactjs
 
