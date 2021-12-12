@@ -12,16 +12,15 @@
                 background: none;
                 color: #fff;
                 white-space: nowrap;
+                text-align: center;
             }
         }
     }
     tr {
         td {
             border: 1px solid #00a2ff30;
-            text-align: center;
             padding: 5px 20px;
             background: #00a2ff05;
-            font-weight: bolder;
         }
         * {
             background: none;
@@ -31,6 +30,10 @@
             button {
                 display: none;
             }
+        }
+        td[colspan="7"] {
+            text-align: center;
+            padding: 20px 0;
         }
     }
 }

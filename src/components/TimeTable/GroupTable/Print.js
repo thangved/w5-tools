@@ -22,7 +22,7 @@ const Print = ({ matrix }) => {
 
     const tableContent = [];
 
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 13; i++) {
         const tRow = i !== 5 && i !== 9 ? <tr key={i}>
             <td key={0}>{matrix[i][0]}</td>
             <td key={1}>{matrix[i][1]}</td>

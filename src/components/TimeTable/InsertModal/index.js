@@ -65,7 +65,7 @@ const InsertModal = ({ visible, courseKey, data, onClose = () => { } }) => {
                                 <Select.Option
                                     value={JSON.stringify(group)}
                                     key={group.class}>
-                                    {group.class}
+                                    {group.class} - Nhóm {group.id}
                                 </Select.Option>
                             ))
                         }

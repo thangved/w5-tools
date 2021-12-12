@@ -9,7 +9,7 @@ const columns = [
         title: 'Tiết',
         dataIndex: '0',
         key: '0',
-        width: 50,
+        width: 150,
         fixed: 'left'
     },
     {
@@ -103,7 +103,7 @@ const GroupTable = () => {
                 <Table
                     bordered
                     size="small"
-                    scroll={{ x: 950, y: '100vh' }}
+                    scroll={{ x: 1050, y: '100vh' }}
                     dataSource={matrix.slice(0, 5)}
                     columns={columns}
                     pagination={false}
@@ -118,7 +118,7 @@ const GroupTable = () => {
                 <Table
                     bordered
                     size="small"
-                    scroll={{ x: 950, y: '100vh' }}
+                    scroll={{ x: 1050, y: '100vh' }}
                     dataSource={matrix.slice(5, 9)}
                     columns={columns}
                     pagination={false}
@@ -133,7 +133,7 @@ const GroupTable = () => {
                 <Table
                     bordered
                     size="small"
-                    scroll={{ x: 950, y: '100vh' }}
+                    scroll={{ x: 1050, y: '100vh' }}
                     dataSource={matrix.slice(9)}
                     columns={columns}
                     pagination={false}

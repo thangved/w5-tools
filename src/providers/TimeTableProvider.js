@@ -132,9 +132,14 @@ const TimeTableProvider = ({ children }) => {
                                     </Popconfirm>
                                 ]}
                                 message={<div>
-                                    <div>{group.name}</div>
+                                    <strong>{group.name}</strong>
                                     <div>{group.class}</div>
-                                    <div>{time.room}</div>
+                                    <div>Nhóm <strong>
+                                        {group.id}
+                                    </strong></div>
+                                    <div>Phòng <strong>
+                                        {time.room}
+                                    </strong></div>
                                 </div>} />
                         )
                     })
