@@ -6,7 +6,7 @@ const useDelay = (value) => {
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			setDelayValue(value);
-		}, 1000);
+		}, 500);
 
 		return () => clearTimeout(timeout);
 	}, [value]);
