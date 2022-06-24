@@ -56,7 +56,7 @@ function App() {
 								<a
 									target='_blank'
 									rel='noreferrer'
-									href='https://fb.com/minhthangd'
+									href='https://fb.com/thangved'
 								>
 									Minh Thang
 								</a>{' '}
