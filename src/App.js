@@ -15,29 +15,29 @@ const TimeTable = lazy(() => import('./components/TimeTable'));
 function App() {
 	return (
 		<BrowserRouter>
-			<Layout style={{
-				minHeight: '100vh',
-				display: 'flex',
-				flexDirection: 'row',
-			}}>
+			<Layout
+				style={{
+					minHeight: '100vh',
+					display: 'flex',
+					flexDirection: 'row',
+				}}
+			>
 				<Navbar />
 				<Layout style={{ flex: 1 }}>
 					<Header />
 					<Content>
-						<Suspense fallback={
-							<div className={styles.fallback}>
-								<Spin />
-							</div>
-						}>
+						<Suspense
+							fallback={
+								<div className={styles.fallback}>
+									<Spin />
+								</div>
+							}
+						>
 							<Routes>
+								<Route path='//' element={<Home />} />
+								<Route path='/grade' element={<Grade />} />
 								<Route
-									path="//"
-									element={<Home />} />
-								<Route
-									path="/grade"
-									element={<Grade />} />
-								<Route
-									path="timetable"
+									path='timetable'
 									element={<TimeTable />}
 								/>
 							</Routes>
@@ -45,24 +45,31 @@ function App() {
 					</Content>
 					<Layout style={{ width: '100%' }}>
 						<Footer>
-
 							<Typography.Text>
-								&copy; {new Date().getFullYear()} W5 TEAM. All rights reserved<br />
+								&copy; {new Date().getFullYear()} W5 TEAM. All
+								rights reserved
+								<br />
 							</Typography.Text>
 
-							<Typography.Text>Dev by <a
-								target="_blank"
-								rel="noreferrer"
-								href="https://fb.com/minhthangd">
-								Minh Thang
-							</a> (thangved)<br />
+							<Typography.Text>
+								Dev by{' '}
+								<a
+									target='_blank'
+									rel='noreferrer'
+									href='https://fb.com/minhthangd'
+								>
+									Minh Thang
+								</a>{' '}
+								(thangved)
+								<br />
 							</Typography.Text>
 
 							<Typography.Text>
 								<a
-									target="_blank"
-									rel="noreferrer"
-									href="https://github.com/thangved/w5-tools.git">
+									target='_blank'
+									rel='noreferrer'
+									href='https://github.com/thangved/w5-tools.git'
+								>
 									Source here!
 								</a>
 								<br />
@@ -70,10 +77,10 @@ function App() {
 						</Footer>
 					</Layout>
 				</Layout>
-
 			</Layout>
 		</BrowserRouter>
 	);
 }
 
 export default App;
+

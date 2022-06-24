@@ -1,3 +1,5 @@
 export const AppConfigs = {
-	APIURL: 'https://minhthangdev-server.herokuapp.com/api',
+	APIURL: 'https://api.tools.w5team.com',
+	// APIURL: 'http://localhost:8080',
 };
+
