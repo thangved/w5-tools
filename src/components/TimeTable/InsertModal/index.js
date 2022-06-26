@@ -91,11 +91,12 @@ const InsertModal = ({ visible, courseKey, data, onClose = () => {} }) => {
 					}
 				/>
 			)}
-			{selected?.time?.map((time) => (
+			{selected?.time?.map((time, index) => (
 				<Alert
 					style={{
 						marginTop: 5,
 					}}
+					key={index}
 					message={
 						<Descriptions>
 							<Descriptions.Item label='Thứ' span={4}>

@@ -23,9 +23,9 @@ function App() {
 				}}
 			>
 				<Navbar />
-				<Layout style={{ flex: 1 }}>
+				<Layout style={{ flex: 1, overflow: 'hidden' }}>
 					<Header />
-					<Content>
+					<Content style={{ overflow: 'hidden' }}>
 						<Suspense
 							fallback={
 								<div className={styles.fallback}>

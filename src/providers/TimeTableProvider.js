@@ -1,4 +1,4 @@
-import { Alert, Button, message, Popconfirm } from 'antd';
+import { message } from 'antd';
 import axios from 'axios';
 import { createContext, useEffect, useState } from 'react';
 import { AppConfigs } from '../configs/AppConfigs';
@@ -44,6 +44,7 @@ export const TimeTable = createContext({
 	setYear: Function,
 	setSemester: Function,
 	addGroup: Function,
+	deleteGroup: Function,
 });
 
 const TimeTableProvider = ({ children }) => {
@@ -52,8 +53,8 @@ const TimeTableProvider = ({ children }) => {
 	});
 
 	const [yearList, setYearList] = useState([]);
-	const [year, setYear] = useState(null);
-	const [semester, setSemester] = useState(null);
+	const [year, setYear] = useState(localStorage.getItem('year'));
+	const [semester, setSemester] = useState(localStorage.getItem('semester'));
 	const [matrix, setMatrix] = useState(initMatrix());
 
 	const addGroup = (group) => {
@@ -129,41 +130,10 @@ const TimeTableProvider = ({ children }) => {
 								`Không thể thêm học phần ${group.name} do trùng lịch!`,
 							);
 						}
-						prevMatrix[position.x][position.y] = (
-							<Alert
-								action={[
-									<Popconfirm
-										title='Bạn muốn xóa'
-										okText='Xóa'
-										okType='danger'
-										cancelText='Hủy'
-										onConfirm={() =>
-											deleteGroup(group.class)
-										}
-									>
-										<Button type='link' danger size='small'>
-											Xóa
-										</Button>
-									</Popconfirm>,
-								]}
-								message={
-									<div>
-										<strong>{group.name}</strong>
-										<div>{group.class}</div>
-										<div>
-											Nhóm <strong>{group.id}</strong>
-										</div>
-										<div>
-											Phòng <strong>{time.room}</strong>
-										</div>
-										<div>
-											Sỉ số{' '}
-											<strong>{group.member}</strong>
-										</div>
-									</div>
-								}
-							/>
-						);
+						prevMatrix[position.x][position.y] = {
+							...group,
+							time,
+						};
 					});
 				});
 			});
@@ -189,6 +159,7 @@ const TimeTableProvider = ({ children }) => {
 					localStorage.setItem('semester', semester);
 				},
 				addGroup,
+				deleteGroup,
 			}}
 		>
 			{children}
