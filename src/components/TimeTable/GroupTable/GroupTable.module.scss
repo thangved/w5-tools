@@ -1,4 +1,9 @@
 .table {
+	width: 100%;
+	background: #fff;
+}
+
+.table-print {
 	margin: 10px;
 	border-collapse: collapse;
 	background: #fff;
@@ -39,7 +44,7 @@
 }
 
 @media print {
-	.table {
+	.table-print {
 		display: block;
 	}
 }

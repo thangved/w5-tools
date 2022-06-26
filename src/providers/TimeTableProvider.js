@@ -156,6 +156,10 @@ const TimeTableProvider = ({ children }) => {
 										<div>
 											Phòng <strong>{time.room}</strong>
 										</div>
+										<div>
+											Sỉ số{' '}
+											<strong>{group.member}</strong>
+										</div>
 									</div>
 								}
 							/>
