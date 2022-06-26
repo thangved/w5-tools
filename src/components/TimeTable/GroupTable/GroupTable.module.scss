@@ -67,6 +67,12 @@
 		td {
 			padding: 10px;
 			border: 1px solid #eee;
+
+			& > div {
+				p {
+					margin: 2px 0;
+				}
+			}
 		}
 
 		button {
