@@ -1,4 +1,4 @@
-import { Button, Popconfirm } from 'antd';
+import { Button, Popconfirm, Spin } from 'antd';
 import axios from 'axios';
 import { useContext, useEffect, useRef, useState } from 'react';
 
@@ -7,7 +7,7 @@ import { TimeTable } from '../../../providers/TimeTableProvider';
 import styles from './GroupTable.module.scss';
 
 const TableCell = ({ cell, rIndex }) => {
-	const [available, setAvailable] = useState(0);
+	const [available, setAvailable] = useState(null);
 	const { year, semester, deleteGroup } = useContext(TimeTable);
 
 	const heightRef = useRef();
@@ -75,7 +75,12 @@ const TableCell = ({ cell, rIndex }) => {
 					</p>
 
 					<p>
-						Còn lại: <strong>{available || cell.available}</strong>
+						Còn lại:{' '}
+						{available === null ? (
+							<Spin />
+						) : (
+							<strong>{available || cell.available}</strong>
+						)}
 					</p>
 				</div>
 
