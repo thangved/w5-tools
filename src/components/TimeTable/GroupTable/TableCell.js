@@ -79,7 +79,7 @@ const TableCell = ({ cell, rIndex }) => {
 						{available === null ? (
 							<Spin />
 						) : (
-							<strong>{available || cell.available}</strong>
+							<strong>{available}</strong>
 						)}
 					</p>
 				</div>
