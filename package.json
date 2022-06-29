@@ -4,9 +4,13 @@
 	"private": true,
 	"dependencies": {
 		"@ant-design/icons": "^4.7.0",
+		"@codemirror/lang-json": "^6.0.0",
+		"@codemirror/language": "^6.1.0",
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^11.1.0",
 		"@testing-library/user-event": "^12.1.10",
+		"@uiw/codemirror-theme-dracula": "^4.9.4",
+		"@uiw/react-codemirror": "^4.9.4",
 		"antd": "^4.17.2",
 		"axios": "^0.24.0",
 		"less": "^4.1.2",

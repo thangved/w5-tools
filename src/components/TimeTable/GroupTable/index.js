@@ -4,6 +4,7 @@ import { useCallback, useContext, useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 
 import { TimeTable } from '../../../providers/TimeTableProvider';
+import ExportJson from './ExportJson';
 import styles from './GroupTable.module.scss';
 import TableCell from './TableCell';
 
@@ -30,6 +31,7 @@ const GroupTable = () => {
 					trigger={reactPrintTrigger}
 					content={reactPrintContent}
 				/>
+				<ExportJson />
 			</div>
 			<table className={styles.table} ref={tableRef}>
 				<thead>

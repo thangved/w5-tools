@@ -1,26 +1,26 @@
-import { message } from 'antd';
-import axios from 'axios';
-import { createContext, useEffect, useState } from 'react';
-import { AppConfigs } from '../configs/AppConfigs';
-import { initMatrix } from './initMatrix';
+import { message } from "antd";
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
+import { AppConfigs } from "../configs/AppConfigs";
+import { initMatrix } from "./initMatrix";
 
 export const TimeTable = createContext({
 	groups: [
 		{
-			key: '',
-			id: '',
-			teacher: '',
-			class: '',
-			member: '',
-			name: '',
-			weight: '',
-			week: '',
+			key: "",
+			id: "",
+			teacher: "",
+			class: "",
+			member: "",
+			name: "",
+			weight: "",
+			week: "",
 			time: [
 				{
 					day: 0,
 					start: 0,
 					count: [],
-					room: '',
+					room: "",
 					matrix: [
 						{
 							x: 0,
@@ -33,13 +33,13 @@ export const TimeTable = createContext({
 	],
 	yearList: [
 		{
-			year: '',
-			value: '',
+			year: "",
+			value: "",
 			semester: [],
 		},
 	],
-	year: '',
-	semester: '',
+	year: "",
+	semester: "",
 	matrix: [{}],
 	setYear: Function,
 	setSemester: Function,
@@ -49,18 +49,18 @@ export const TimeTable = createContext({
 
 const TimeTableProvider = ({ children }) => {
 	const [groups, setGroups] = useState(() => {
-		return JSON.parse(localStorage.getItem('groups') || '[]') || [];
+		return JSON.parse(localStorage.getItem("groups") || "[]") || [];
 	});
 
 	const [yearList, setYearList] = useState([]);
-	const [year, setYear] = useState(localStorage.getItem('year'));
-	const [semester, setSemester] = useState(localStorage.getItem('semester'));
+	const [year, setYear] = useState(localStorage.getItem("year"));
+	const [semester, setSemester] = useState(localStorage.getItem("semester"));
 	const [matrix, setMatrix] = useState(initMatrix());
 
 	const addGroup = (group) => {
 		setGroups((prev) => [
 			...prev.filter(
-				(e) => e.key !== group.key && e.class !== group.class,
+				(e) => e.key !== group.key && e.class !== group.class
 			),
 			convert(group),
 		]);
@@ -103,21 +103,21 @@ const TimeTableProvider = ({ children }) => {
 			setYearList(data);
 
 			setYear(
-				localStorage.getItem('year') ||
+				localStorage.getItem("year") ||
 					data.find((year) =>
 						year.value.startsWith(
 							new Date().getFullYear() ||
-								localStorage.getItem('year'),
-						),
-					).value,
+								localStorage.getItem("year")
+						)
+					).value
 			);
 
-			setSemester(localStorage.getItem('semester') || 1);
+			setSemester(localStorage.getItem("semester") || 1);
 		});
 	}, []);
 
 	useEffect(() => {
-		localStorage.setItem('groups', JSON.stringify(groups));
+		localStorage.setItem("groups", JSON.stringify(groups));
 
 		setMatrix((prevMatrix) => {
 			prevMatrix = initMatrix();
@@ -127,7 +127,7 @@ const TimeTableProvider = ({ children }) => {
 						if (prevMatrix[position.x][position.y]) {
 							deleteGroup(group.class);
 							return message.error(
-								`Không thể thêm học phần ${group.name} do trùng lịch!`,
+								`Không thể thêm học phần ${group.name} do trùng lịch!`
 							);
 						}
 						prevMatrix[position.x][position.y] = {
@@ -152,11 +152,11 @@ const TimeTableProvider = ({ children }) => {
 				matrix,
 				setYear: (year) => {
 					setYear(year);
-					localStorage.setItem('year', year);
+					localStorage.setItem("year", year);
 				},
 				setSemester: (semester) => {
 					setSemester(semester);
-					localStorage.setItem('semester', semester);
+					localStorage.setItem("semester", semester);
 				},
 				addGroup,
 				deleteGroup,
@@ -168,4 +168,3 @@ const TimeTableProvider = ({ children }) => {
 };
 
 export default TimeTableProvider;
-
