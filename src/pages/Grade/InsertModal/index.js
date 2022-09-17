@@ -1,16 +1,16 @@
-import { Descriptions, InputNumber, message } from 'antd';
-import { useContext, useEffect, useState } from 'react';
-import Modal from 'antd/lib/modal/Modal';
+import { Descriptions, InputNumber, message } from "antd";
+import { useContext, useEffect, useState } from "react";
+import Modal from "antd/lib/modal/Modal";
 
-import exChange from './ExChange';
-import { Grade } from '../../../providers/GradeProvider';
+import exChange from "./ExChange";
+import { Grade } from "../../../providers/GradeProvider";
 
-const InsertModal = ({ visible, course, onClose = () => { } }) => {
+const InsertModal = ({ visible, course, onClose = () => {} }) => {
 	const { addCourses } = useContext(Grade);
 
 	const [digit, setDigit] = useState(0);
 	const [four, setFour] = useState(0);
-	const [txt, setTxt] = useState('');
+	const [txt, setTxt] = useState("");
 
 	useEffect(() => {
 		const { four, txt } = exChange(digit);
@@ -20,7 +20,7 @@ const InsertModal = ({ visible, course, onClose = () => { } }) => {
 
 	return (
 		<Modal
-			visible={visible}
+			open={visible}
 			onCancel={onClose}
 			onOk={() => {
 				addCourses({
@@ -30,7 +30,7 @@ const InsertModal = ({ visible, course, onClose = () => { } }) => {
 					txt,
 				});
 				onClose();
-				message.success('Đã thêm học phần.');
+				message.success("Đã thêm học phần.");
 				setDigit(10);
 			}}
 		>
@@ -41,10 +41,10 @@ const InsertModal = ({ visible, course, onClose = () => { } }) => {
 					<InputNumber
 						max={10}
 						min={0}
-						style={{ width: '100%' }}
+						style={{ width: "100%" }}
 						onChange={(value) => setDigit(value)}
-						onKeyPress={event => {
-							if (event.key === 'Enter') {
+						onKeyPress={(event) => {
+							if (event.key === "Enter") {
 								addCourses({
 									...course,
 									digit,
@@ -52,7 +52,7 @@ const InsertModal = ({ visible, course, onClose = () => { } }) => {
 									txt,
 								});
 								onClose();
-								message.success('Đã thêm học phần.');
+								message.success("Đã thêm học phần.");
 								setDigit(10);
 							}
 						}}

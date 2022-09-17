@@ -1,18 +1,19 @@
-import { Button, Form, Input, List, message, Select } from 'antd';
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { Button, Form, Input, List, message, Select } from "antd";
+import { useContext, useEffect, useState } from "react";
+import RequestAddCourseModal from "../../../components/RequestAddCourseModal";
 
-import { AppConfigs } from '../../../configs/AppConfigs';
-import useDelay from '../../../hooks/useDelay';
-import { TimeTable } from '../../../providers/TimeTableProvider';
-import InsertModal from '../InsertModal';
+import useDelay from "../../../hooks/useDelay";
+import { TimeTable } from "../../../providers/TimeTableProvider";
+import request from "../../../utils/request";
+import InsertModal from "../InsertModal";
 
 const Search = () => {
 	const { yearList, year, semester, setYear, setSemester } =
 		useContext(TimeTable);
 
 	const [courses, setCourses] = useState([]);
-	const [keyword, setKeyword] = useState('');
+	const [keyword, setKeyword] = useState("");
+	const [searched, setSearched] = useState(false);
 	const [modal, setModal] = useState({
 		visible: false,
 		key: null,
@@ -24,12 +25,11 @@ const Search = () => {
 	useEffect(() => {
 		if (!delayKeyword) return;
 		const search = async () => {
-			const res = await axios.get(
-				`${AppConfigs.APIURL}/courses/search/${delayKeyword}`,
-			);
+			const res = await request.get(`courses/search/${delayKeyword}`);
 
 			setCourses(res.data);
 			message.success(`Đã tìm thấy ${res.data.length} khóa học`);
+			setSearched(true);
 		};
 
 		search();
@@ -38,7 +38,7 @@ const Search = () => {
 	const SelectYear = (
 		<>
 			<Select
-				placeholder='Năm học'
+				placeholder="Năm học"
 				value={year}
 				loading={!yearList.length}
 				onChange={setYear}
@@ -50,7 +50,7 @@ const Search = () => {
 				))}
 			</Select>
 			<Select
-				placeholder='Học kỳ'
+				placeholder="Học kỳ"
 				value={semester}
 				loading={!yearList.length}
 				onChange={setSemester}
@@ -69,22 +69,23 @@ const Search = () => {
 	return (
 		<Form
 			style={{
-				width: '100%',
+				width: "100%",
 				padding: 10,
 			}}
 		>
 			<Form.Item
 				style={{
-					width: '100%',
+					width: "100%",
 				}}
 			>
 				<Input.Group>
 					<Input
+						autoFocus
 						addonBefore={SelectYear}
 						value={keyword}
-						placeholder='Nhập tên hoặc mã học phần'
+						placeholder="Nhập tên hoặc mã học phần"
 						style={{
-							width: '100%',
+							width: "100%",
 						}}
 						onChange={(event) => setKeyword(event.target.value)}
 					/>
@@ -98,7 +99,7 @@ const Search = () => {
 						<List.Item
 							actions={[
 								<Button
-									type='link'
+									type="link"
 									onClick={() =>
 										setModal({
 											visible: true,
@@ -119,8 +120,9 @@ const Search = () => {
 					)}
 				/>
 			</Form.Item>
+			{searched && <RequestAddCourseModal />}
 			<InsertModal
-				visible={modal.visible}
+				open={modal.visible}
 				courseKey={modal.key}
 				data={modal.data}
 				onClose={() =>
@@ -136,4 +138,3 @@ const Search = () => {
 };
 
 export default Search;
-

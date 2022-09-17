@@ -1,31 +1,31 @@
-import { Content, Footer, Header } from 'antd/lib/layout/layout';
-import { Layout, Spin, Typography } from 'antd';
-import 'antd/dist/antd.css';
+import { Content, Footer, Header } from "antd/lib/layout/layout";
+import { Layout, Spin, Typography } from "antd";
+import "antd/dist/antd.css";
 
-import './App.css';
-import Navbar from './components/Navbar';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React, { lazy, Suspense } from 'react';
-import styles from './App.module.scss';
-import Home from './components/Home/Home';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { lazy, Suspense } from "react";
+import styles from "./App.module.scss";
+import Home from "./pages/Home/Home";
 
-const Grade = lazy(() => import('./components/Grade'));
-const TimeTable = lazy(() => import('./components/TimeTable'));
+const Grade = lazy(() => import("./pages/Grade"));
+const TimeTable = lazy(() => import("./pages/TimeTable"));
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Layout
 				style={{
-					minHeight: '100vh',
-					display: 'flex',
-					flexDirection: 'row',
+					minHeight: "100vh",
+					display: "flex",
+					flexDirection: "row",
 				}}
 			>
 				<Navbar />
-				<Layout style={{ flex: 1, overflow: 'hidden' }}>
+				<Layout style={{ flex: 1, overflow: "hidden" }}>
 					<Header />
-					<Content style={{ overflow: 'hidden' }}>
+					<Content style={{ overflow: "hidden" }}>
 						<Suspense
 							fallback={
 								<div className={styles.fallback}>
@@ -34,16 +34,16 @@ function App() {
 							}
 						>
 							<Routes>
-								<Route path='//' element={<Home />} />
-								<Route path='/grade' element={<Grade />} />
+								<Route path="//" element={<Home />} />
+								<Route path="/grade" element={<Grade />} />
 								<Route
-									path='timetable'
+									path="timetable"
 									element={<TimeTable />}
 								/>
 							</Routes>
 						</Suspense>
 					</Content>
-					<Layout style={{ width: '100%' }}>
+					<Layout style={{ width: "100%" }}>
 						<Footer>
 							<Typography.Text>
 								&copy; {new Date().getFullYear()} W5 TEAM. All
@@ -52,23 +52,23 @@ function App() {
 							</Typography.Text>
 
 							<Typography.Text>
-								Dev by{' '}
+								Dev by{" "}
 								<a
-									target='_blank'
-									rel='noreferrer'
-									href='https://fb.com/thangved'
+									target="_blank"
+									rel="noreferrer"
+									href="https://fb.com/thangved"
 								>
 									Minh Thang
-								</a>{' '}
+								</a>{" "}
 								(thangved)
 								<br />
 							</Typography.Text>
 
 							<Typography.Text>
 								<a
-									target='_blank'
-									rel='noreferrer'
-									href='https://github.com/thangved/w5-tools.git'
+									target="_blank"
+									rel="noreferrer"
+									href="https://github.com/thangved/w5-tools.git"
 								>
 									Source here!
 								</a>
@@ -83,4 +83,3 @@ function App() {
 }
 
 export default App;
-

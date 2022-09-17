@@ -1,10 +1,9 @@
-import { Button, Popconfirm, Spin } from 'antd';
-import axios from 'axios';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { Button, Popconfirm, Spin } from "antd";
+import { useContext, useEffect, useRef, useState } from "react";
 
-import { AppConfigs } from '../../../configs/AppConfigs';
-import { TimeTable } from '../../../providers/TimeTableProvider';
-import styles from './GroupTable.module.scss';
+import { TimeTable } from "../../../providers/TimeTableProvider";
+import request from "../../../utils/request";
+import styles from "./GroupTable.module.scss";
 
 const TableCell = ({ cell, rIndex }) => {
 	const [available, setAvailable] = useState(null);
@@ -24,12 +23,12 @@ const TableCell = ({ cell, rIndex }) => {
 
 		const fetchData = async () => {
 			try {
-				const res = await axios.get(
-					`${AppConfigs.APIURL}/courses/key/${cell?.key}?y=${year}&n=${semester}`,
+				const res = await request.get(
+					`courses/key/${cell?.key}?y=${year}&n=${semester}`
 				);
 
 				setAvailable(
-					res.data?.find((cl) => cl.class === cell.class).available,
+					res.data?.find((cl) => cl.class === cell.class).available
 				);
 			} catch (error) {}
 		};
@@ -75,7 +74,7 @@ const TableCell = ({ cell, rIndex }) => {
 					</p>
 
 					<p>
-						Còn lại:{' '}
+						Còn lại:{" "}
 						{available === null ? (
 							<Spin />
 						) : (
@@ -86,12 +85,12 @@ const TableCell = ({ cell, rIndex }) => {
 
 				<Popconfirm
 					title={`Bạn có muốn xóa ${cell.name}`}
-					okText='Xóa'
-					cancelText='Hủy'
-					okType='danger'
+					okText="Xóa"
+					cancelText="Hủy"
+					okType="danger"
 					onConfirm={() => deleteGroup(cell.class)}
 				>
-					<Button danger type='primary' style={{ width: '100%' }}>
+					<Button danger type="primary" style={{ width: "100%" }}>
 						Xóa
 					</Button>
 				</Popconfirm>
@@ -101,4 +100,3 @@ const TableCell = ({ cell, rIndex }) => {
 };
 
 export default TableCell;
-

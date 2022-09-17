@@ -50,12 +50,7 @@ const ExportJson = () => {
 				Xuất JSON
 			</Button>
 
-			<Modal
-				visible={visible}
-				onCancel={toggle}
-				onOk={toggle}
-				width={1000}
-			>
+			<Modal open={visible} onCancel={toggle} onOk={toggle} width={1000}>
 				<div style={{ padding: 20 }}></div>
 				<CodeMirror
 					theme={dracula}

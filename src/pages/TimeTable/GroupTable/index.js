@@ -1,19 +1,20 @@
-import { PrinterFilled } from '@ant-design/icons';
-import { Button } from 'antd';
-import { useCallback, useContext, useRef } from 'react';
-import ReactToPrint from 'react-to-print';
+import { PrinterFilled } from "@ant-design/icons";
+import { Button } from "antd";
+import React from "react";
+import { useCallback, useContext, useRef } from "react";
+import ReactToPrint from "react-to-print";
 
-import { TimeTable } from '../../../providers/TimeTableProvider';
-import ExportJson from './ExportJson';
-import styles from './GroupTable.module.scss';
-import TableCell from './TableCell';
+import { TimeTable } from "../../../providers/TimeTableProvider";
+import ExportJson from "./ExportJson";
+import styles from "./GroupTable.module.scss";
+import TableCell from "./TableCell";
 
 const GroupTable = () => {
 	const { matrix } = useContext(TimeTable);
 
 	const reactPrintTrigger = useCallback(
 		() => <Button icon={<PrinterFilled />}>In</Button>,
-		[],
+		[]
 	);
 
 	const tableRef = useRef();
@@ -23,10 +24,10 @@ const GroupTable = () => {
 	return (
 		<div
 			style={{
-				overflowX: 'auto',
+				overflowX: "auto",
 			}}
 		>
-			<div style={{ padding: '10px 0' }}>
+			<div style={{ padding: "10px 0" }}>
 				<ReactToPrint
 					trigger={reactPrintTrigger}
 					content={reactPrintContent}
@@ -47,8 +48,8 @@ const GroupTable = () => {
 				</thead>
 				<tbody>
 					{matrix.map((row, rIndex) => (
-						<>
-							<tr key={rIndex}>
+						<React.Fragment key={rIndex}>
+							<tr>
 								<td className={styles.leftCol}>{rIndex + 1}</td>
 								<TableCell cell={row[1]} rIndex={rIndex} />
 								<TableCell cell={row[2]} rIndex={rIndex} />
@@ -58,23 +59,17 @@ const GroupTable = () => {
 								<TableCell cell={row[6]} rIndex={rIndex} />
 							</tr>
 							{rIndex === 4 && (
-								<tr
-									className={styles.divider}
-									key={Math.random()}
-								>
+								<tr className={styles.divider}>
 									<td colSpan={7}>Chiều</td>
 								</tr>
 							)}
 
 							{rIndex === 8 && (
-								<tr
-									className={styles.divider}
-									key={Math.random()}
-								>
+								<tr className={styles.divider}>
 									<td colSpan={7}>Tối</td>
 								</tr>
 							)}
-						</>
+						</React.Fragment>
 					))}
 				</tbody>
 			</table>
@@ -83,4 +78,3 @@ const GroupTable = () => {
 };
 
 export default GroupTable;
-

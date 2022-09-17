@@ -1,7 +1,6 @@
 import { message } from "antd";
-import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { AppConfigs } from "../configs/AppConfigs";
+import request from "../utils/request";
 import { initMatrix } from "./initMatrix";
 
 export const TimeTable = createContext({
@@ -98,7 +97,7 @@ const TimeTableProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		axios.get(`${AppConfigs.APIURL}/courses/yearlist`).then(({ data }) => {
+		request.get(`courses/yearlist`).then(({ data }) => {
 			if (!data) return;
 			setYearList(data);
 
