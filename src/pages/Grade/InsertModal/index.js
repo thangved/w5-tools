@@ -5,7 +5,7 @@ import Modal from "antd/lib/modal/Modal";
 import exChange from "./ExChange";
 import { Grade } from "../../../providers/GradeProvider";
 
-const InsertModal = ({ visible, course, onClose = () => {} }) => {
+const InsertModal = ({ open, course, onClose = () => {} }) => {
 	const { addCourses } = useContext(Grade);
 
 	const [digit, setDigit] = useState(0);
@@ -20,7 +20,7 @@ const InsertModal = ({ visible, course, onClose = () => {} }) => {
 
 	return (
 		<Modal
-			open={visible}
+			open={open}
 			onCancel={onClose}
 			onOk={() => {
 				addCourses({

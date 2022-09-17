@@ -1,11 +1,10 @@
 import { Alert, Descriptions, message, Select } from "antd";
 import Modal from "antd/lib/modal/Modal";
-import { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import { AppConfigs } from "../../../configs/AppConfigs";
+import { useContext, useEffect, useState } from "react";
 import { TimeTable } from "../../../providers/TimeTableProvider";
+import request from "../../../utils/request";
 
-const InsertModal = ({ visible, courseKey, data, onClose = () => {} }) => {
+const InsertModal = ({ open, courseKey, data, onClose = () => {} }) => {
 	const { year, semester, addGroup } = useContext(TimeTable);
 
 	const [groups, setGroups] = useState([]);
@@ -13,10 +12,8 @@ const InsertModal = ({ visible, courseKey, data, onClose = () => {} }) => {
 
 	useEffect(() => {
 		if (courseKey)
-			axios
-				.get(
-					`${AppConfigs.APIURL}/courses/key/${courseKey}?y=${year}&n=${semester}`
-				)
+			request
+				.get(`courses/key/${courseKey}?y=${year}&n=${semester}`)
 				.then(({ data }) => {
 					if (data) setGroups(data);
 				});
@@ -28,7 +25,8 @@ const InsertModal = ({ visible, courseKey, data, onClose = () => {} }) => {
 
 	return (
 		<Modal
-			open={visible}
+			centered
+			open={open}
 			onCancel={onClose}
 			onOk={() => {
 				if (!selected)
@@ -49,7 +47,7 @@ const InsertModal = ({ visible, courseKey, data, onClose = () => {} }) => {
 
 				<Descriptions.Item label="Nhóm học phần">
 					<Select
-						value={JSON.stringify(selected)}
+						value={selected}
 						placeholder="Nhóm học phần"
 						style={{
 							width: "100%",

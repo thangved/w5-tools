@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 import { Helmet } from "react-helmet";
 import TimeTableProvider from "../../providers/TimeTableProvider";
 import GroupTable from "./GroupTable";
-import Search from "./Search/index";
+import Search from "./Search";
 
 const TimeTable = () => {
 	return (
