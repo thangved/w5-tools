@@ -1,13 +1,15 @@
-import { Button, Input, InputNumber, message, Space } from "antd";
+import { Button, Input, InputNumber, message, Space, Typography } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import request from "../../utils/request";
 import styles from "./RequestAddCourseModal.module.scss";
 
 const RequestAddCourseModal = () => {
 	const [visible, setVisible] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [isErrored, setIsError] = useState(false);
 
 	const formik = useFormik({
 		initialValues: {
@@ -16,6 +18,7 @@ const RequestAddCourseModal = () => {
 			weight: 1,
 		},
 		onSubmit: async (values) => {
+			setLoading(true);
 			try {
 				const res = await request.post("courses/request-add-course", {
 					...values,
@@ -25,7 +28,18 @@ const RequestAddCourseModal = () => {
 				setVisible(false);
 			} catch (error) {
 				message.error(error.response.data.message);
+				setIsError(true);
 			}
+			setLoading(false);
+		},
+		validate: (values) => {
+			const errors = {};
+
+			if (!values.key) {
+				errors.key = "Mã học phần là bắt buộc";
+			}
+
+			return errors;
 		},
 	});
 
@@ -34,6 +48,10 @@ const RequestAddCourseModal = () => {
 	const handleAfterClose = () => {
 		formik.resetForm();
 	};
+
+	useEffect(() => {
+		setIsError(false);
+	}, [formik.values.key]);
 	return (
 		<>
 			<Button
@@ -46,11 +64,13 @@ const RequestAddCourseModal = () => {
 				<br /> Bấm vào đây để thêm nhé.
 			</Button>
 			<Modal
+				confirmLoading={loading}
 				title="Yêu cầu bổ sung thêm học phần"
 				open={visible}
 				centered
 				cancelText="Hủy"
 				okText="Yêu cầu"
+				okType={isErrored ? "danger" : "primary"}
 				onCancel={handleClick}
 				onOk={formik.handleSubmit}
 				afterClose={handleAfterClose}
@@ -66,9 +86,14 @@ const RequestAddCourseModal = () => {
 							onKeyDown={(event) =>
 								event.code === "Enter" && formik.handleSubmit()
 							}
-							status={!formik.values.key ? "error" : ""}
+							status={
+								formik.errors.key || isErrored ? "error" : ""
+							}
 							required
 						/>
+						<Typography style={{ color: "red" }}>
+							{formik.errors.key}
+						</Typography>
 						<Input
 							placeholder="Tên học phần (Tùy chọn)"
 							value={formik.values.name}
