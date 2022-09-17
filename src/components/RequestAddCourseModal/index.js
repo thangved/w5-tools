@@ -46,6 +46,7 @@ const RequestAddCourseModal = () => {
 				<br /> Bấm vào đây để thêm nhé.
 			</Button>
 			<Modal
+				title="Yêu cầu bổ sung thêm học phần"
 				open={visible}
 				centered
 				cancelText="Hủy"
@@ -54,7 +55,7 @@ const RequestAddCourseModal = () => {
 				onOk={formik.handleSubmit}
 				afterClose={handleAfterClose}
 			>
-				<form onSubmit={formik.handleSubmit} style={{ marginTop: 50 }}>
+				<form onSubmit={formik.handleSubmit}>
 					<Space direction="vertical" style={{ width: "100%" }}>
 						<Input
 							autoFocus
