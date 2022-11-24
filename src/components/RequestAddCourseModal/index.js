@@ -104,6 +104,8 @@ const RequestAddCourseModal = () => {
 							style={{ width: "100%" }}
 							placeholder="Số tín chỉ (Tùy chọn)"
 							value={formik.values.weight}
+							onChange={formik.handleChange}
+							name="weight"
 							type="number"
 						/>
 					</Space>
