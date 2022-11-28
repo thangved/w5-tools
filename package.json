@@ -11,7 +11,7 @@
 		"@testing-library/user-event": "^12.1.10",
 		"@uiw/codemirror-theme-dracula": "^4.9.4",
 		"@uiw/react-codemirror": "^4.9.4",
-		"antd": "^4.23.1",
+		"antd": "5.x",
 		"axios": "^0.24.0",
 		"formik": "^2.2.9",
 		"less": "^4.1.2",

@@ -1,6 +1,5 @@
 import { Content, Footer, Header } from "antd/lib/layout/layout";
 import { Layout, Spin, Typography } from "antd";
-import "antd/dist/antd.css";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -8,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
 import styles from "./App.module.scss";
 import Home from "./pages/Home/Home";
+import Changelog from "./pages/Changelog";
 
 const Grade = lazy(() => import("./pages/Grade"));
 const TimeTable = lazy(() => import("./pages/TimeTable"));
@@ -37,8 +37,12 @@ function App() {
 								<Route path="//" element={<Home />} />
 								<Route path="/grade" element={<Grade />} />
 								<Route
-									path="timetable"
+									path="/timetable"
 									element={<TimeTable />}
+								/>
+								<Route
+									path="/changelog"
+									element={<Changelog />}
 								/>
 							</Routes>
 						</Suspense>
