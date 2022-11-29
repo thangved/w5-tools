@@ -1,12 +1,12 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from "react";
 
 export const Grade = createContext({
 	courses: [
 		{
-			key: '',
-			name: '',
+			key: "",
+			name: "",
 			digit: 0,
-			txt: '',
+			txt: "",
 			four: 0,
 		},
 	],
@@ -17,7 +17,7 @@ export const Grade = createContext({
 
 const GradeProvider = ({ children }) => {
 	const [courses, setCourses] = useState(
-		JSON.parse(localStorage.getItem('courses') || '[]')
+		JSON.parse(localStorage.getItem("courses") || "[]")
 	);
 	const [avg, setAvg] = useState(0);
 
@@ -33,7 +33,7 @@ const GradeProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		localStorage.setItem('courses', JSON.stringify(courses));
+		localStorage.setItem("courses", JSON.stringify(courses));
 		let weights = 0;
 		let sum = 0;
 		courses.forEach((e) => {
@@ -44,9 +44,9 @@ const GradeProvider = ({ children }) => {
 		if (weights === 0) return setAvg(0);
 
 		let avg = `${sum / weights}`;
-		avg = avg.split('.');
+		avg = avg.split(".");
 		avg[1] = avg[1]?.slice(0, 2) || 0;
-		avg = avg.join('.');
+		avg = avg.join(".");
 
 		if (weights !== 0) setAvg(avg);
 	}, [courses]);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const useDelay = (value) => {
 	const [delayValue, setDelayValue] = useState();
@@ -14,4 +14,3 @@ const useDelay = (value) => {
 };
 
 export default useDelay;
-
