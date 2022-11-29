@@ -2193,17 +2193,17 @@
     "@typescript-eslint/types" "4.15.2"
     eslint-visitor-keys "^2.0.0"
 
-"@uiw/codemirror-theme-dracula@^4.9.4":
-  version "4.9.4"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-dracula/-/codemirror-theme-dracula-4.9.4.tgz#13529f355cbf2ec1f25f07e3ff79d1032985c15b"
-  integrity sha512-NHhfOm9tbzD8zw/ev2kordyRmiO3A7B5MzMFkpxCP4vTZH/+TR/jctw+RfN+1DwJYXUo1DEultvRWJ99u9zTjg==
+"@uiw/codemirror-theme-dracula@^4.15.1":
+  version "4.15.1"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-dracula/-/codemirror-theme-dracula-4.15.1.tgz#568b6426db1da4e9ef848c72d4189288e7f0034c"
+  integrity sha512-Qs4H5Uva5Z0EuX2NHl8soZEaQU0P5E2WBvGHl3jSwQA3LofrpFcL7x46V/cu8il0lmc977TD5A0M2xYKv8yvtg==
   dependencies:
-    "@uiw/codemirror-themes" "4.9.4"
+    "@uiw/codemirror-themes" "4.15.1"
 
-"@uiw/codemirror-themes@4.9.4":
-  version "4.9.4"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-themes/-/codemirror-themes-4.9.4.tgz#8038a4e7076ab2abaf0102c7646eb29738fdba69"
-  integrity sha512-8aBVCenwvhIUjs6HNenqZhxIbrRdN/sBVPmikPi3lntK1HfGRqBHmU0XjdCjp6uGXwUl7b5J0mmNsKS7PaLPWg==
+"@uiw/codemirror-themes@4.15.1":
+  version "4.15.1"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-themes/-/codemirror-themes-4.15.1.tgz#5f660816ddf5389c2e0ec13644856a12bdbd14ad"
+  integrity sha512-+3NKdmptuZTGE56LQ3j8daOAKer2STEDklkJS9AGHAGoN1o7IdA+s2Pbp3hf5oGxukNb29UA+gskfb5grszWMg==
   dependencies:
     "@codemirror/language" "^6.0.0"
     "@codemirror/state" "^6.0.0"
