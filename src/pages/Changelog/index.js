@@ -16,8 +16,6 @@ const Changelog = () => {
 				);
 
 				setLogList(res.data);
-
-				console.log(res.data);
 			} catch (error) {}
 		};
 
