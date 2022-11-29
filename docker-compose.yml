@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+    w5-tools:
+        build: ./
+        volumes:
+            - app:/app
+        working_dir: /app
+        ports:
+            - "3000:3000"
+
+volumes:
+    app:
