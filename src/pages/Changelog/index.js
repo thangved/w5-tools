@@ -16,6 +16,8 @@ const Changelog = () => {
 				);
 
 				setLogList(res.data);
+
+				console.log(res.data);
 			} catch (error) {}
 		};
 
@@ -38,12 +40,23 @@ const Changelog = () => {
 				bordered
 				header="Nhật ký thay đổi"
 				dataSource={logList}
+				itemLayout="horizontal"
 				renderItem={(item) => (
 					<List.Item>
 						<List.Item.Meta
 							avatar={<Avatar src={item.committer.avatar_url} />}
-							title={item.committer.login}
-							description={item.commit.message}
+							title={
+								<a
+									size="small"
+									target="_blank"
+									rel="noreferrer"
+									href={item.html_url}
+									style={{ marginRight: 2 }}
+								>
+									{item.commit.message} - {item.sha}
+								</a>
+							}
+							description={item.committer.login}
 						/>
 					</List.Item>
 				)}
