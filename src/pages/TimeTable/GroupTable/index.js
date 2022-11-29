@@ -26,6 +26,7 @@ const GroupTable = () => {
 			style={{
 				overflowX: "auto",
 			}}
+			id="timetable-main"
 		>
 			<div style={{ padding: "10px 0" }}>
 				<ReactToPrint

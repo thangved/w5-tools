@@ -33,6 +33,7 @@ const InsertModal = ({ open, course, onClose = () => {} }) => {
 				message.success("Đã thêm học phần.");
 				setDigit(10);
 			}}
+			okButtonProps={{ id: "ok-button" }}
 		>
 			<h2>{course.name}</h2>
 			<h3>{course.key}</h3>
@@ -56,6 +57,7 @@ const InsertModal = ({ open, course, onClose = () => {} }) => {
 								setDigit(10);
 							}
 						}}
+						id="grade-input"
 					/>
 				</Descriptions.Item>
 				<Descriptions.Item span={4} label="Điểm thang 4">

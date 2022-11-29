@@ -1,10 +1,11 @@
 import { SearchOutlined } from "@ant-design/icons/lib/icons";
-import { Button, Form, Input, List, message, Spin } from "antd";
+import { Button, Form, Input, List, message, Spin, Tour } from "antd";
 import { useState } from "react";
 
 import RequestAddCourseModal from "../../../components/RequestAddCourseModal";
 import request from "../../../utils/request";
 import InsertModal from "../InsertModal/index";
+import tourSteps from "./tourSteps";
 
 const Search = () => {
 	const [courses, setCourses] = useState([]);
@@ -16,9 +17,11 @@ const Search = () => {
 		course: {},
 	});
 
+	const [openTour, setOpenTour] = useState(false);
+
 	const onSearch = () => {
 		if (keyword.length < 3)
-			return message.warn("Vui lòng nhập ít nhất 3 ký tự");
+			return message.warning("Vui lòng nhập ít nhất 3 ký tự");
 		if (loading) return;
 		message.loading("Đang tìm kiếm", 1);
 		setLoading(true);
@@ -36,9 +39,18 @@ const Search = () => {
 
 	return (
 		<Form style={{ width: "100%" }}>
+			<Button
+				style={{ marginBottom: 5 }}
+				size="small"
+				type="primary"
+				onClick={() => setOpenTour(!openTour)}
+			>
+				Hướng dẫn
+			</Button>
 			<Form.Item style={{ width: "100%" }}>
 				<Input.Group style={{ width: "100%" }} compact>
 					<Input
+						id="search-container"
 						autoFocus
 						style={{
 							width: `calc(100% - 120px)`,
@@ -50,6 +62,7 @@ const Search = () => {
 						}}
 					/>
 					<Button
+						id="search-button"
 						icon={<SearchOutlined />}
 						type="primary"
 						loading={loading}
@@ -77,6 +90,7 @@ const Search = () => {
 					</div>
 				)}
 				<List
+					id="course-list"
 					pagination={{ pageSize: 9 }}
 					dataSource={courses}
 					renderItem={(course) => (
@@ -110,6 +124,12 @@ const Search = () => {
 				onClose={() =>
 					setInsert((prev) => ({ ...prev, visible: false }))
 				}
+			/>
+
+			<Tour
+				open={openTour}
+				onClose={() => setOpenTour(false)}
+				steps={tourSteps}
 			/>
 		</Form>
 	);

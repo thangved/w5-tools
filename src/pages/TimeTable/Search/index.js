@@ -1,4 +1,4 @@
-import { Button, Form, Input, List, message, Select } from "antd";
+import { Button, Form, Input, List, message, Select, Tour } from "antd";
 import { useContext, useEffect, useState } from "react";
 import RequestAddCourseModal from "../../../components/RequestAddCourseModal";
 
@@ -6,6 +6,7 @@ import useDelay from "../../../hooks/useDelay";
 import { TimeTable } from "../../../providers/TimeTableProvider";
 import request from "../../../utils/request";
 import InsertModal from "../InsertModal";
+import tourSteps from "./tourSteps";
 
 const Search = () => {
 	const { yearList, year, semester, setYear, setSemester } =
@@ -19,6 +20,8 @@ const Search = () => {
 		key: null,
 		data: {},
 	});
+
+	const [openTour, setOpenTour] = useState(false);
 
 	const delayKeyword = useDelay(keyword);
 
@@ -41,6 +44,7 @@ const Search = () => {
 				placeholder="Năm học"
 				value={year}
 				loading={!yearList.length}
+				id="select-year"
 				onChange={setYear}
 			>
 				{yearList.map((y) => (
@@ -53,6 +57,7 @@ const Search = () => {
 				placeholder="Học kỳ"
 				value={semester}
 				loading={!yearList.length}
+				id="select-semester"
 				onChange={setSemester}
 			>
 				{yearList
@@ -73,6 +78,14 @@ const Search = () => {
 				padding: 10,
 			}}
 		>
+			<Button
+				style={{ marginBottom: 5 }}
+				size="small"
+				type="primary"
+				onClick={() => setOpenTour(!openTour)}
+			>
+				Hướng dẫn
+			</Button>
 			<Form.Item
 				style={{
 					width: "100%",
@@ -80,6 +93,7 @@ const Search = () => {
 			>
 				<Input.Group>
 					<Input
+						id="search-container"
 						autoFocus
 						addonBefore={SelectYear}
 						value={keyword}
@@ -93,6 +107,7 @@ const Search = () => {
 			</Form.Item>
 			<Form.Item>
 				<List
+					id="course-list"
 					pagination={{ pageSize: 9 }}
 					dataSource={courses}
 					renderItem={(course) => (
@@ -132,6 +147,12 @@ const Search = () => {
 						data: {},
 					})
 				}
+			/>
+
+			<Tour
+				open={openTour}
+				steps={tourSteps}
+				onClose={() => setOpenTour(false)}
 			/>
 		</Form>
 	);

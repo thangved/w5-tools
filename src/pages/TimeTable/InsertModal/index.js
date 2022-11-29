@@ -34,6 +34,7 @@ const InsertModal = ({ open, courseKey, data, onClose = () => {} }) => {
 				addGroup(selected);
 				onClose();
 			}}
+			okButtonProps={{ id: "ok-button" }}
 		>
 			<h2>{data.name}</h2>
 			<Descriptions>
@@ -47,6 +48,7 @@ const InsertModal = ({ open, courseKey, data, onClose = () => {} }) => {
 
 				<Descriptions.Item label="Nhóm học phần">
 					<Select
+						id="select-group"
 						value={selected}
 						placeholder="Nhóm học phần"
 						style={{

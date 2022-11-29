@@ -82,6 +82,7 @@ const CoursesTable = () => {
 				dataSource={courses}
 				columns={columns}
 				scroll={{ x: 900, y: '100vh' }}
+				id="course-table"
 			/>
 			<Descriptions
 				layout="vertical"
