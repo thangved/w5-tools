@@ -39,7 +39,7 @@ export const TimeTable = createContext({
 	],
 	year: "",
 	semester: "",
-	matrix: [{}],
+	matrix: [],
 	setYear: Function,
 	setSemester: Function,
 	addGroup: Function,
