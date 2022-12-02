@@ -1,25 +1,19 @@
 import { Button, Form, Input, List, message, Select, Tour } from "antd";
 import { useContext, useEffect, useState } from "react";
-import RequestAddCourseModal from "../../../components/RequestAddCourseModal";
+import RequestAddCourseModal from "~/components/RequestAddCourseModal";
 
-import useDelay from "../../../hooks/useDelay";
-import { TimeTable } from "../../../providers/TimeTableProvider";
-import request from "../../../utils/request";
-import InsertModal from "../InsertModal";
+import useDelay from "~/hooks/useDelay";
+import { TimeTable } from "~/providers/TimeTableProvider";
+import request from "~/utils/request";
 import tourSteps from "./tourSteps";
 
 const Search = () => {
-	const { yearList, year, semester, setYear, setSemester } =
+	const { yearList, year, semester, setYear, setSemester, addCourse } =
 		useContext(TimeTable);
 
 	const [courses, setCourses] = useState([]);
 	const [keyword, setKeyword] = useState("");
 	const [searched, setSearched] = useState(false);
-	const [modal, setModal] = useState({
-		visible: false,
-		key: null,
-		data: {},
-	});
 
 	const [openTour, setOpenTour] = useState(false);
 
@@ -115,13 +109,7 @@ const Search = () => {
 							actions={[
 								<Button
 									type="link"
-									onClick={() =>
-										setModal({
-											visible: true,
-											key: course.key,
-											data: course,
-										})
-									}
+									onClick={() => addCourse(course)}
 								>
 									Thêm
 								</Button>,
@@ -136,18 +124,6 @@ const Search = () => {
 				/>
 			</Form.Item>
 			{searched && <RequestAddCourseModal />}
-			<InsertModal
-				open={modal.visible}
-				courseKey={modal.key}
-				data={modal.data}
-				onClose={() =>
-					setModal({
-						visible: false,
-						key: null,
-						data: {},
-					})
-				}
-			/>
 
 			<Tour
 				open={openTour}

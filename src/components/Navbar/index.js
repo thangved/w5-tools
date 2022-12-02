@@ -5,9 +5,9 @@ import {
 } from "@ant-design/icons/lib/icons";
 import { Menu } from "antd";
 import Sider from "antd/lib/layout/Sider";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { useState } from "react";
 import styles from "./Navbar.module.scss";
 
 const Navbar = () => {

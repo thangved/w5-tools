@@ -2,7 +2,7 @@ import { DeleteOutlined } from "@ant-design/icons/lib/icons";
 import { Button, Descriptions, Popconfirm, Progress, Space, Table } from "antd";
 import { useContext, useState } from "react";
 
-import { Grade } from "../../../providers/GradeProvider";
+import { Grade } from "~/providers/GradeProvider";
 
 const columns = [
 	{

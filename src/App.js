@@ -1,16 +1,16 @@
-import { Content, Footer, Header } from "antd/lib/layout/layout";
 import { Layout, Spin, Typography } from "antd";
+import { Content, Footer, Header } from "antd/lib/layout/layout";
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import Navbar from "./components/Navbar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { lazy, Suspense } from "react";
 import styles from "./App.module.scss";
-import Home from "./pages/Home/Home";
-import Changelog from "./pages/Changelog";
+import Navbar from "~/components/Navbar";
+import Changelog from "~/pages/Changelog";
+import Home from "~/pages/Home/Home";
 
-const Grade = lazy(() => import("./pages/Grade"));
-const TimeTable = lazy(() => import("./pages/TimeTable"));
+const Grade = lazy(() => import("~/pages/Grade"));
+const TimeTable = lazy(() => import("~/pages/TimeTable"));
 
 function App() {
 	return (

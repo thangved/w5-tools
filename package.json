@@ -28,9 +28,9 @@
 		"web-vitals": "^3.1.0"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"start": "craco start",
+		"build": "craco build",
+		"test": "craco test",
 		"eject": "react-scripts eject",
 		"prettier": "npx prettier --write . --single-quote=true --use-tabs=true --tab-width=4"
 	},
@@ -51,5 +51,8 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"@craco/craco": "^7.0.0"
 	}
 }

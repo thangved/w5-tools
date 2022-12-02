@@ -1,17 +1,16 @@
 import { PrinterFilled } from "@ant-design/icons";
 import { Button } from "antd";
-import React from "react";
-import { useCallback, useContext, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import ReactToPrint from "react-to-print";
 
-import { TimeTable } from "../../../providers/TimeTableProvider";
+import { initMatrix } from "~/providers/initMatrix";
+import convertGroup from "~/utils/convertGroup";
+
 import ExportJson from "./ExportJson";
 import styles from "./GroupTable.module.scss";
 import TableCell from "./TableCell";
 
-const GroupTable = () => {
-	const { matrix } = useContext(TimeTable);
-
+const GroupTable = ({ timeTable }) => {
 	const reactPrintTrigger = useCallback(
 		() => <Button icon={<PrinterFilled />}>In</Button>,
 		[]
@@ -20,6 +19,20 @@ const GroupTable = () => {
 	const tableRef = useRef();
 
 	const reactPrintContent = () => tableRef.current;
+
+	const matrix = initMatrix();
+
+	timeTable.forEach((group) => {
+		group = convertGroup(group);
+		group.time.forEach((time) => {
+			time.matrix.forEach((position) => {
+				matrix[position.x][position.y] = {
+					...group,
+					time,
+				};
+			});
+		});
+	});
 
 	return (
 		<div
@@ -33,7 +46,7 @@ const GroupTable = () => {
 					trigger={reactPrintTrigger}
 					content={reactPrintContent}
 				/>
-				<ExportJson />
+				<ExportJson groups={timeTable} />
 			</div>
 			<table className={styles.table} ref={tableRef}>
 				<thead>

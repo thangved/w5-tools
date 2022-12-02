@@ -1,8 +1,8 @@
 import { Alert, Descriptions, message, Select } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import { useContext, useEffect, useState } from "react";
-import { TimeTable } from "../../../providers/TimeTableProvider";
-import request from "../../../utils/request";
+import { TimeTable } from "~/providers/TimeTableProvider";
+import request from "~/utils/request";
 
 const InsertModal = ({ open, courseKey, data, onClose = () => {} }) => {
 	const { year, semester, addGroup } = useContext(TimeTable);

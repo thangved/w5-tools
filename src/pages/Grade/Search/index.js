@@ -2,8 +2,8 @@ import { SearchOutlined } from "@ant-design/icons/lib/icons";
 import { Button, Form, Input, List, message, Spin, Tour } from "antd";
 import { useState } from "react";
 
-import RequestAddCourseModal from "../../../components/RequestAddCourseModal";
-import request from "../../../utils/request";
+import RequestAddCourseModal from "~/components/RequestAddCourseModal";
+import request from "~/utils/request";
 import InsertModal from "../InsertModal/index";
 import tourSteps from "./tourSteps";
 

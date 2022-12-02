@@ -6,10 +6,10 @@ import { dracula } from "@uiw/codemirror-theme-dracula";
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 
-import { TimeTable } from "../../../providers/TimeTableProvider";
+import { TimeTable } from "~/providers/TimeTableProvider";
 
-const ExportJson = () => {
-	const { groups, year, semester } = useContext(TimeTable);
+const ExportJson = ({ groups }) => {
+	const { year, semester } = useContext(TimeTable);
 	const [visible, setVisible] = useState(false);
 
 	const data = {

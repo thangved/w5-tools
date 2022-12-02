@@ -1,42 +1,12 @@
-import { Button, Popconfirm, Spin } from "antd";
-import { useContext, useEffect, useRef, useState } from "react";
+import { Spin } from "antd";
+import { useRef, useState } from "react";
 
-import { TimeTable } from "../../../providers/TimeTableProvider";
-import request from "../../../utils/request";
 import styles from "./GroupTable.module.scss";
 
 const TableCell = ({ cell, rIndex }) => {
-	const [available, setAvailable] = useState(null);
-	const { year, semester, deleteGroup } = useContext(TimeTable);
+	const [available] = useState(null);
 
 	const heightRef = useRef();
-
-	useEffect(() => {
-		if (
-			!cell ||
-			cell.time.start !== rIndex + 1 ||
-			!year ||
-			!semester ||
-			available
-		)
-			return;
-
-		const fetchData = async () => {
-			try {
-				const res = await request.get(
-					`courses/key/${cell?.key}?y=${year}&n=${semester}`
-				);
-
-				setAvailable(
-					res.data?.find((cl) => cl.class === cell.class).available
-				);
-			} catch (error) {}
-		};
-
-		fetchData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [cell, rIndex, semester, year]);
-
 	return !cell ? (
 		<td></td>
 	) : cell.time.start !== rIndex + 1 ? (
@@ -82,18 +52,6 @@ const TableCell = ({ cell, rIndex }) => {
 						)}
 					</p>
 				</div>
-
-				<Popconfirm
-					title={`Bạn có muốn xóa ${cell.name}`}
-					okText="Xóa"
-					cancelText="Hủy"
-					okType="danger"
-					onConfirm={() => deleteGroup(cell.class)}
-				>
-					<Button danger type="primary" style={{ width: "100%" }}>
-						Xóa
-					</Button>
-				</Popconfirm>
 			</div>
 		</td>
 	);

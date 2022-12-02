@@ -1,7 +1,9 @@
 import { Col, Row } from "antd";
 import { Helmet } from "react-helmet";
-import TimeTableProvider from "../../providers/TimeTableProvider";
-import GroupTable from "./GroupTable";
+
+import TimeTableProvider from "~/providers/TimeTableProvider";
+import CourseList from "./CourseList";
+import GroupTableList from "./GroupTableList";
 import Search from "./Search";
 
 const TimeTable = () => {
@@ -15,7 +17,8 @@ const TimeTable = () => {
 					<Search />
 				</Col>
 				<Col lg={16} md={16} xs={24} style={{ overflow: "hidden" }}>
-					<GroupTable />
+					<CourseList />
+					<GroupTableList />
 				</Col>
 			</Row>
 		</TimeTableProvider>
