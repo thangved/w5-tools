@@ -28,23 +28,31 @@ export default function autoGenTimeTables(courses = []) {
 				courses[0].actives.includes(e.class) ||
 				!courses[0].actives.length
 		)
-		.map((e) => [e]);
+		.map((_, index) => [index]);
 
 	let tmp = [];
 
 	for (const course of courses.slice(1)) {
 		tmp = [];
-		if (!course.groups.length) continue;
-		for (const timeTable of defaultTimeTables) {
-			for (const group1 of course.groups) {
+
+		for (const i of defaultTimeTables) {
+			if (!course.groups.length) {
+				tmp.push([...i, -1]);
+				continue;
+			}
+			const timeTable = i
+				.map((e, i) => courses[i].groups[e])
+				.filter((e) => e);
+
+			for (let j = 0; j < course.groups.length; j++) {
+				const group1 = course.groups[j];
 				if (
 					course.actives.length &&
 					!course.actives.includes(group1.class)
 				)
 					continue;
-
 				if (!checkConflict(group1, timeTable)) {
-					tmp.push([...timeTable, group1]);
+					tmp.push([...i, j]);
 				}
 			}
 		}

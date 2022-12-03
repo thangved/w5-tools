@@ -1,20 +1,28 @@
 import { PrinterFilled } from "@ant-design/icons";
 import { Button, Typography } from "antd";
 import React, { useCallback, useRef } from "react";
+import { useContext } from "react";
 import ReactToPrint from "react-to-print";
 
 import { initMatrix } from "~/providers/initMatrix";
+import { TimeTable } from "~/providers/TimeTableProvider";
 import convertGroup from "~/utils/convertGroup";
 
 import ExportJson from "./ExportJson";
 import styles from "./GroupTable.module.scss";
 import TableCell from "./TableCell";
 
-const GroupTable = ({ timeTable }) => {
+const GroupTable = ({ timeTable = [] }) => {
+	const { courses } = useContext(TimeTable);
+
 	const reactPrintTrigger = useCallback(
 		() => <Button icon={<PrinterFilled />}>In</Button>,
 		[]
 	);
+
+	timeTable = timeTable
+		.map((e, i) => (e === -1 ? null : courses[i].groups[e]))
+		.filter((e) => e);
 
 	const tableRef = useRef();
 

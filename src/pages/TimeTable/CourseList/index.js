@@ -43,8 +43,8 @@ const CourseList = () => {
 								value={group.class}
 								key={group.class}
 							>
-								{group.class} - Thứ:{" "}
-								{group.time.map((e) => e.day).join(", ")}
+								Nhóm {group.id} <br /> Thứ:{" "}
+								{group.time.map(({ day }) => day).join(", ")}
 							</Select.Option>
 						))}
 					</Select>

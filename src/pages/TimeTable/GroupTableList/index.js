@@ -18,7 +18,6 @@ const GroupTableList = () => {
 
 			<Pagination
 				total={timeTables.length}
-				hideOnSinglePage
 				pageSize={1}
 				current={selectedPage}
 				onChange={(page) => changePage(page)}
