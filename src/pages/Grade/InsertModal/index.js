@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import Modal from "antd/lib/modal/Modal";
 
 import exChange from "./ExChange";
-import { Grade } from "../../../providers/GradeProvider";
+import { Grade } from "~/providers/GradeProvider";
 
 const InsertModal = ({ open, course, onClose = () => {} }) => {
 	const { addCourses } = useContext(Grade);

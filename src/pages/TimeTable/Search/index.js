@@ -1,25 +1,20 @@
 import { Button, Form, Input, List, message, Select, Tour } from "antd";
 import { useContext, useEffect, useState } from "react";
-import RequestAddCourseModal from "../../../components/RequestAddCourseModal";
+import RequestAddCourseModal from "~/components/RequestAddCourseModal";
 
-import useDelay from "../../../hooks/useDelay";
-import { TimeTable } from "../../../providers/TimeTableProvider";
-import request from "../../../utils/request";
-import InsertModal from "../InsertModal";
+import useDelay from "~/hooks/useDelay";
+import { TimeTable } from "~/providers/TimeTableProvider";
+import request from "~/utils/request";
+
 import tourSteps from "./tourSteps";
 
 const Search = () => {
-	const { yearList, year, semester, setYear, setSemester } =
+	const { yearList, year, semester, setYear, setSemester, addCourse } =
 		useContext(TimeTable);
 
 	const [courses, setCourses] = useState([]);
 	const [keyword, setKeyword] = useState("");
 	const [searched, setSearched] = useState(false);
-	const [modal, setModal] = useState({
-		visible: false,
-		key: null,
-		data: {},
-	});
 
 	const [openTour, setOpenTour] = useState(false);
 
@@ -28,11 +23,16 @@ const Search = () => {
 	useEffect(() => {
 		if (!delayKeyword) return;
 		const search = async () => {
-			const res = await request.get(`courses/search/${delayKeyword}`);
+			const hideMessage = message.loading("Đang tìm kiếm học phần", 0);
+			try {
+				const res = await request.get(`courses/search/${delayKeyword}`);
 
-			setCourses(res.data);
-			message.success(`Đã tìm thấy ${res.data.length} khóa học`);
-			setSearched(true);
+				setCourses(res.data);
+			} catch (error) {
+			} finally {
+				setSearched(true);
+				hideMessage();
+			}
 		};
 
 		search();
@@ -108,20 +108,14 @@ const Search = () => {
 			<Form.Item>
 				<List
 					id="course-list"
-					pagination={{ pageSize: 9 }}
+					pagination={{ pageSize: 9, hideOnSinglePage: true }}
 					dataSource={courses}
 					renderItem={(course) => (
 						<List.Item
 							actions={[
 								<Button
 									type="link"
-									onClick={() =>
-										setModal({
-											visible: true,
-											key: course.key,
-											data: course,
-										})
-									}
+									onClick={() => addCourse(course)}
 								>
 									Thêm
 								</Button>,
@@ -136,18 +130,6 @@ const Search = () => {
 				/>
 			</Form.Item>
 			{searched && <RequestAddCourseModal />}
-			<InsertModal
-				open={modal.visible}
-				courseKey={modal.key}
-				data={modal.data}
-				onClose={() =>
-					setModal({
-						visible: false,
-						key: null,
-						data: {},
-					})
-				}
-			/>
 
 			<Tour
 				open={openTour}

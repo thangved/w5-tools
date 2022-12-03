@@ -2,8 +2,8 @@ import { SearchOutlined } from "@ant-design/icons/lib/icons";
 import { Button, Form, Input, List, message, Spin, Tour } from "antd";
 import { useState } from "react";
 
-import RequestAddCourseModal from "../../../components/RequestAddCourseModal";
-import request from "../../../utils/request";
+import RequestAddCourseModal from "~/components/RequestAddCourseModal";
+import request from "~/utils/request";
 import InsertModal from "../InsertModal/index";
 import tourSteps from "./tourSteps";
 
@@ -19,22 +19,25 @@ const Search = () => {
 
 	const [openTour, setOpenTour] = useState(false);
 
-	const onSearch = () => {
+	const onSearch = async () => {
 		if (keyword.length < 3)
 			return message.warning("Vui lòng nhập ít nhất 3 ký tự");
 		if (loading) return;
-		message.loading("Đang tìm kiếm", 1);
-		setLoading(true);
-		request
-			.get(`courses/search/${keyword}`)
-			.then(({ data }) => {
-				setLoading(false);
-				if (!data) return;
-				setCourses(data);
-				message.success(`Đã tìm thấy ${data.length} kết quả`);
-				setSearched(true);
-			})
-			.catch((err) => setLoading(false));
+
+		const hideMessage = message.loading("Đang tìm kiếm học phần", 0);
+		try {
+			setLoading(true);
+			const res = await request.get(`courses/search/${keyword}`);
+
+			if (!res.data) return;
+
+			setCourses(res.data);
+		} catch (error) {
+		} finally {
+			setSearched(true);
+			setLoading(false);
+			hideMessage();
+		}
 	};
 
 	return (
@@ -91,7 +94,7 @@ const Search = () => {
 				)}
 				<List
 					id="course-list"
-					pagination={{ pageSize: 9 }}
+					pagination={{ pageSize: 9, hideOnSinglePage: true }}
 					dataSource={courses}
 					renderItem={(course) => (
 						<List.Item

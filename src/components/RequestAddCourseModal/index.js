@@ -3,7 +3,7 @@ import Modal from "antd/lib/modal/Modal";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 
-import request from "../../utils/request";
+import request from "~/utils/request";
 import styles from "./RequestAddCourseModal.module.scss";
 
 const RequestAddCourseModal = () => {
