@@ -65,7 +65,10 @@ const TimeTableProvider = ({ children }) => {
 				})
 			).data;
 
-			setCourses((prev) => [...prev, { detail: course, groups }]);
+			setCourses((prev) => [
+				...prev,
+				{ detail: course, groups, actives: [] },
+			]);
 		} finally {
 			hideMessage();
 		}

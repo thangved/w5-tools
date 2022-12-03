@@ -1,7 +1,13 @@
 export default function autoGenTimeTables(courses = []) {
 	if (!courses.length) return [];
 
-	let defaultTimeTables = courses[0].groups.map((e) => [e]);
+	let defaultTimeTables = courses[0].groups
+		.filter(
+			(e) =>
+				courses[0].actives.includes(e.class) ||
+				!courses[0].actives.length
+		)
+		.map((e) => [e]);
 
 	let tmp = [];
 
@@ -10,6 +16,12 @@ export default function autoGenTimeTables(courses = []) {
 		for (const timeTable of defaultTimeTables) {
 			for (const group1 of course.groups) {
 				let conflict = false;
+
+				if (
+					course.actives.length &&
+					!course.actives.includes(group1.class)
+				)
+					continue;
 
 				for (const group2 of timeTable) {
 					for (const time1 of group1.time) {

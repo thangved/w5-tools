@@ -17,29 +17,7 @@ const tourSteps = [
 			return document.getElementById("search-container");
 		},
 	},
-	{
-		title: "Chọn học phần mong muốn",
-		description: "Chọn học phần bạn muốn thêm và nhấn vào nút thêm",
-		target: () => {
-			return document.getElementById("course-list");
-		},
-	},
-	{
-		title: "Chọn nhóm học phần",
-		description:
-			"Chọn nhóm học phần mà bạn nghĩ mà bạn nên học hoặc bạn nghĩ là bạn bè nghĩ bạn nghĩ bạn nên học : ))",
-		placement: "top",
-		target: () => {
-			return document.getElementById("select-group");
-		},
-	},
-	{
-		title: "Thêm học nhóm học phần",
-		description: "Nhấn vào nút OK để thêm nhóm học phần vào thời khóa biểu",
-		target: () => {
-			return document.getElementById("ok-button");
-		},
-	},
+
 	{
 		title: "Hoàn thành",
 		description:

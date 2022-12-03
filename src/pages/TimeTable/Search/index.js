@@ -102,7 +102,7 @@ const Search = () => {
 			<Form.Item>
 				<List
 					id="course-list"
-					pagination={{ pageSize: 9 }}
+					pagination={{ pageSize: 9, hideOnSinglePage: true }}
 					dataSource={courses}
 					renderItem={(course) => (
 						<List.Item

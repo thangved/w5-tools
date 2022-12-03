@@ -1,5 +1,6 @@
 import { Button, Popconfirm, Select, Table, Typography } from "antd";
 import { useContext } from "react";
+
 import { TimeTable } from "~/providers/TimeTableProvider";
 
 const CourseList = () => {
@@ -21,17 +22,18 @@ const CourseList = () => {
 		},
 		{
 			title: "Chọn nhóm",
-			dataIndex: ["detail", "groups", "active"],
+			dataIndex: "groups",
 			key: "select",
-			render: (groups) => {
-				console.log(groups);
+			render: (groups, course) => {
 				return (
 					<Select
 						size="small"
 						mode="multiple"
 						style={{ minWidth: 150 }}
+						value={course.actives}
+						placeholder="Chọn nhóm (tất cả)"
 						onChange={(value) => {
-							activeGroups(groups[0]?.key, value);
+							activeGroups(course.detail.key, value);
 						}}
 					>
 						{groups?.map((group) => (
@@ -79,7 +81,6 @@ const CourseList = () => {
 				columns={columns}
 				dataSource={dataSource}
 				pagination={{ hideOnSinglePage: true }}
-				locale={{ emptyText: "Bạn chưa thêm học phần nào" }}
 			/>
 		</div>
 	);
