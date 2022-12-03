@@ -5,6 +5,7 @@ import RequestAddCourseModal from "~/components/RequestAddCourseModal";
 import useDelay from "~/hooks/useDelay";
 import { TimeTable } from "~/providers/TimeTableProvider";
 import request from "~/utils/request";
+
 import tourSteps from "./tourSteps";
 
 const Search = () => {
@@ -22,11 +23,16 @@ const Search = () => {
 	useEffect(() => {
 		if (!delayKeyword) return;
 		const search = async () => {
-			const res = await request.get(`courses/search/${delayKeyword}`);
+			const hideMessage = message.loading("Đang tìm kiếm học phần", 0);
+			try {
+				const res = await request.get(`courses/search/${delayKeyword}`);
 
-			setCourses(res.data);
-			message.success(`Đã tìm thấy ${res.data.length} khóa học`);
-			setSearched(true);
+				setCourses(res.data);
+			} catch (error) {
+			} finally {
+				setSearched(true);
+				hideMessage();
+			}
 		};
 
 		search();

@@ -18,10 +18,6 @@ const ExportJson = ({ groups }) => {
 			return {
 				...item,
 				classId: item.id,
-				time: item.time.map((time) => {
-					return { ...time, matrix: null };
-				}),
-				id: null,
 			};
 		}),
 	};

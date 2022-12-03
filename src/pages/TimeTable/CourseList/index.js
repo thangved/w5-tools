@@ -1,10 +1,11 @@
-import { Button, Popconfirm, Select, Table, Typography } from "antd";
+import { Button, Popconfirm, Select, Spin, Table, Typography } from "antd";
 import { useContext } from "react";
 
 import { TimeTable } from "~/providers/TimeTableProvider";
 
 const CourseList = () => {
-	const { courses, deleteCourse, activeGroups } = useContext(TimeTable);
+	const { courses, deleteCourse, activeGroups, synced } =
+		useContext(TimeTable);
 
 	const columns = [
 		{
@@ -27,9 +28,10 @@ const CourseList = () => {
 			render: (groups, course) => {
 				return (
 					<Select
+						loading={!synced}
 						size="small"
 						mode="multiple"
-						style={{ minWidth: 150 }}
+						style={{ width: 150 }}
 						value={course.actives}
 						placeholder="Chọn nhóm (tất cả)"
 						onChange={(value) => {
@@ -76,6 +78,13 @@ const CourseList = () => {
 	return (
 		<div style={{ overflow: "auto" }}>
 			<Typography.Title level={4}>Danh sách học phần</Typography.Title>
+
+			{!synced && (
+				<>
+					<Spin />{" "}
+					<Typography.Text>Đang đồng bộ dữ liệu</Typography.Text>
+				</>
+			)}
 
 			<Table
 				columns={columns}

@@ -1,5 +1,4 @@
 import { Pagination, Typography } from "antd";
-import { useState } from "react";
 import { useContext } from "react";
 
 import { TimeTable } from "~/providers/TimeTableProvider";
@@ -7,9 +6,7 @@ import autoGenTimeTables from "~/utils/autoGenTimeTables";
 import GroupTable from "../GroupTable";
 
 const GroupTableList = () => {
-	const { courses } = useContext(TimeTable);
-
-	const [tableIndex, setTableIndex] = useState(1);
+	const { courses, changePage, selectedPage } = useContext(TimeTable);
 
 	const timeTables = autoGenTimeTables(courses);
 
@@ -23,11 +20,12 @@ const GroupTableList = () => {
 				total={timeTables.length}
 				hideOnSinglePage
 				pageSize={1}
-				onChange={(page) => setTableIndex(page)}
+				current={selectedPage}
+				onChange={(page) => changePage(page)}
 			/>
 
-			{timeTables[tableIndex - 1] && (
-				<GroupTable timeTable={timeTables[tableIndex - 1]} />
+			{timeTables[selectedPage - 1] && (
+				<GroupTable timeTable={timeTables[selectedPage - 1]} />
 			)}
 		</div>
 	);

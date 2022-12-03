@@ -19,6 +19,9 @@ export const TimeTable = createContext({
 	addCourse: Function,
 	deleteCourse: Function,
 	activeGroups: Function,
+	synced: false,
+	selectedPage: 1,
+	changePage: Function,
 });
 
 const TimeTableProvider = ({ children }) => {
@@ -30,6 +33,11 @@ const TimeTableProvider = ({ children }) => {
 			JSON.parse(localStorage.getItem("timetable-courses") || "[]") || []
 		);
 	});
+	const [synced, setSynced] = useState(false);
+	const [selectedPage, setSelectedPage] = useState(
+		() => JSON.parse(localStorage.getItem("timetable-selected-page")) || 1
+	);
+
 	useEffect(() => {
 		request.get(`courses/yearlist`).then(({ data }) => {
 			if (!data) return;
@@ -97,6 +105,39 @@ const TimeTableProvider = ({ children }) => {
 		localStorage.setItem("timetable-courses", JSON.stringify(courses));
 	}, [courses]);
 
+	useEffect(() => {
+		if (!year || !semester) return;
+
+		const syncing = async () => {
+			setSynced(false);
+			try {
+				for (const course of courses) {
+					const res = await request.get(
+						`/courses/key/${course.detail.key}`,
+						{
+							params: {
+								y: year,
+								n: semester,
+							},
+						}
+					);
+
+					if (res.data?.length) {
+						course.groups = res.data;
+					}
+				}
+
+				setCourses([...courses]);
+			} catch (error) {
+			} finally {
+				setSynced(true);
+			}
+		};
+
+		syncing();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [year, semester]);
+
 	return (
 		<TimeTable.Provider
 			value={{
@@ -115,6 +156,15 @@ const TimeTableProvider = ({ children }) => {
 				addCourse,
 				deleteCourse,
 				activeGroups,
+				synced,
+				selectedPage,
+				changePage: (page) => {
+					setSelectedPage(page);
+					localStorage.setItem(
+						"timetable-selected-page",
+						JSON.stringify(page)
+					);
+				},
 			}}
 		>
 			{children}

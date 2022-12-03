@@ -13,6 +13,7 @@ export default function autoGenTimeTables(courses = []) {
 
 	for (const course of courses.slice(1)) {
 		tmp = [];
+		if (!course.groups.length) continue;
 		for (const timeTable of defaultTimeTables) {
 			for (const group1 of course.groups) {
 				let conflict = false;
