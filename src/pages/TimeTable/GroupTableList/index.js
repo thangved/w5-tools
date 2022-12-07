@@ -3,6 +3,7 @@ import { useContext } from "react";
 
 import { TimeTable } from "~/providers/TimeTableProvider";
 import autoGenTimeTables from "~/utils/autoGenTimeTables";
+
 import GroupTable from "../GroupTable";
 
 const GroupTableList = () => {

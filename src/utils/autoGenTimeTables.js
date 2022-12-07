@@ -23,12 +23,13 @@ export default function autoGenTimeTables(courses = []) {
 	if (!courses.length) return [];
 
 	let defaultTimeTables = courses[0].groups
+		.map((_, index) => [_, index])
 		.filter(
-			(e) =>
+			([e]) =>
 				courses[0].actives.includes(e.class) ||
 				!courses[0].actives.length
 		)
-		.map((_, index) => [index]);
+		.map(([_, i]) => [i]);
 
 	let tmp = [];
 
