@@ -2471,17 +2471,17 @@
     "@codemirror/state" "^6.0.0"
     "@codemirror/view" "^6.0.0"
 
-"@uiw/codemirror-theme-dracula@^4.19.4":
-  version "4.19.4"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-dracula/-/codemirror-theme-dracula-4.19.4.tgz#3011a3ff99b86c1b868a911d74a27366beb20f73"
-  integrity sha512-pjMDZ4WjUj6/7mQlVpoxlWM+y6Amz66JCkoCndWXN5LkkGi8V/Tf/v6RU8ZHwZmpJNXZ0pis5UMBEHBKo2sucg==
+"@uiw/codemirror-theme-dracula@^4.19.5":
+  version "4.19.5"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-dracula/-/codemirror-theme-dracula-4.19.5.tgz#26754ce1ccd27c342454345863a11d38c16dff63"
+  integrity sha512-17esrfqJ5JJOcNP1mO5oyP/kF2EtHbjSfIeRg6Ws4ACy3Ja+QFM9aqKRczI/ikoJMxfCtpUFmhXiZoVEzThn8Q==
   dependencies:
-    "@uiw/codemirror-themes" "4.19.4"
+    "@uiw/codemirror-themes" "4.19.5"
 
-"@uiw/codemirror-themes@4.19.4":
-  version "4.19.4"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-themes/-/codemirror-themes-4.19.4.tgz#78a443d98ec8261134349163efd01e939e4a3f22"
-  integrity sha512-n2k1GPH9oTeeXY/Xbu5KQiw2rvrM5wkvhFDNRvoX9N/2e3+/lmyloZZ1C1Pk/OpDfOH2hWns8jiH7BKfn+I82A==
+"@uiw/codemirror-themes@4.19.5":
+  version "4.19.5"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-themes/-/codemirror-themes-4.19.5.tgz#439a20d7792929351632270e1fb4313f6bff32b8"
+  integrity sha512-BWCTwQJaGiOc+nYqPLQDjmCtIojaCEKx2aO1bOTyGw0fisKwGw9Csll+bi9ujqA+vk6qYJmXI0P5K7kVs8fbdA==
   dependencies:
     "@codemirror/language" "^6.0.0"
     "@codemirror/state" "^6.0.0"
