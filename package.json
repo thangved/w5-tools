@@ -24,7 +24,7 @@
 		"react-scripts": "5.0.1",
 		"react-text-loop-next": "^0.0.3",
 		"react-to-print": "^2.14.12",
-		"sass": "^1.57.1",
+		"sass": "^1.62.1",
 		"web-vitals": "^3.1.0"
 	},
 	"scripts": {
