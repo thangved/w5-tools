@@ -10,7 +10,7 @@
 		"@testing-library/react": "^12.1.5",
 		"@testing-library/user-event": "^14.4.3",
 		"@uiw/codemirror-theme-dracula": "^4.19.16",
-		"@uiw/react-codemirror": "^4.19.11",
+		"@uiw/react-codemirror": "^4.19.16",
 		"antd": "5.x",
 		"axios": "^1.2.2",
 		"formik": "^2.2.9",
@@ -24,7 +24,7 @@
 		"react-scripts": "5.0.1",
 		"react-text-loop-next": "^0.0.3",
 		"react-to-print": "^2.14.12",
-		"sass": "^1.57.1",
+		"sass": "^1.62.1",
 		"web-vitals": "^3.1.0"
 	},
 	"scripts": {
@@ -53,6 +53,6 @@
 		]
 	},
 	"devDependencies": {
-		"@craco/craco": "^7.0.0"
+		"@craco/craco": "^7.1.0"
 	}
 }
