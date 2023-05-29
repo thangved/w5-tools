@@ -9,7 +9,7 @@
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^12.1.5",
 		"@testing-library/user-event": "^14.4.3",
-		"@uiw/codemirror-theme-dracula": "^4.19.16",
+		"@uiw/codemirror-theme-dracula": "^4.20.2",
 		"@uiw/react-codemirror": "^4.20.2",
 		"antd": "5.x",
 		"axios": "^1.4.0",
