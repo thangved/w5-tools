@@ -8,8 +8,8 @@ export const TimeTable = createContext({
 		{
 			year: "",
 			value: "",
-			semester: [],
-		},
+			semester: []
+		}
 	],
 	year: "",
 	semester: "",
@@ -21,7 +21,7 @@ export const TimeTable = createContext({
 	activeGroups: Function,
 	synced: false,
 	selectedPage: 1,
-	changePage: Function,
+	changePage: Function
 });
 
 const TimeTableProvider = ({ children }) => {
@@ -45,7 +45,7 @@ const TimeTableProvider = ({ children }) => {
 
 			setYear(
 				localStorage.getItem("year") ||
-					data.find((year) =>
+					data.find(year =>
 						year.value.startsWith(
 							new Date().getFullYear() ||
 								localStorage.getItem("year")
@@ -57,8 +57,8 @@ const TimeTableProvider = ({ children }) => {
 		});
 	}, []);
 
-	const addCourse = async (course) => {
-		if (courses.some((e) => e.detail.key === course.key))
+	const addCourse = async course => {
+		if (courses.some(e => e.detail.key === course.key))
 			return message.warning("Học phần này đã được thêm từ trước");
 
 		const hideMessage = message.loading("Đang lấy dữ liệu học phần", 0);
@@ -68,29 +68,27 @@ const TimeTableProvider = ({ children }) => {
 				await request.get(`courses/key/${course.key}`, {
 					params: {
 						y: year,
-						n: semester,
-					},
+						n: semester
+					}
 				})
 			).data;
 
-			setCourses((prev) => [
+			setCourses(prev => [
 				...prev,
-				{ detail: course, groups, actives: [] },
+				{ detail: course, groups, actives: [] }
 			]);
 		} finally {
 			hideMessage();
 		}
 	};
 
-	const deleteCourse = (key) => {
-		setCourses((prev) =>
-			prev.filter((course) => course.detail.key !== key)
-		);
+	const deleteCourse = key => {
+		setCourses(prev => prev.filter(course => course.detail.key !== key));
 	};
 
 	const activeGroups = (key, groupIds) => {
-		setCourses((courses) => {
-			courses = courses.map((course) => {
+		setCourses(courses => {
+			courses = courses.map(course => {
 				if (course.detail.key === key) {
 					course.actives = groupIds;
 				}
@@ -117,8 +115,8 @@ const TimeTableProvider = ({ children }) => {
 						{
 							params: {
 								y: year,
-								n: semester,
-							},
+								n: semester
+							}
 						}
 					);
 
@@ -144,11 +142,11 @@ const TimeTableProvider = ({ children }) => {
 				yearList,
 				year,
 				semester,
-				setYear: (year) => {
+				setYear: year => {
 					setYear(year);
 					localStorage.setItem("year", year);
 				},
-				setSemester: (semester) => {
+				setSemester: semester => {
 					setSemester(semester);
 					localStorage.setItem("semester", semester);
 				},
@@ -158,13 +156,13 @@ const TimeTableProvider = ({ children }) => {
 				activeGroups,
 				synced,
 				selectedPage,
-				changePage: (page) => {
+				changePage: page => {
 					setSelectedPage(page);
 					localStorage.setItem(
 						"timetable-selected-page",
 						JSON.stringify(page)
 					);
-				},
+				}
 			}}
 		>
 			{children}
