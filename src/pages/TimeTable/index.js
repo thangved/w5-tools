@@ -63,7 +63,7 @@ const TimeTable = () => {
 				footer={false}
 				onCancel={() => setClosed(true)}
 			>
-				<Typography.Title level={2} type="danger">
+				<Typography.Title level={3} type="danger">
 					Hiện tại công cụ này không khả dụng!
 				</Typography.Title>
 
