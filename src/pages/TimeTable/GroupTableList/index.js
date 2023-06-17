@@ -1,10 +1,10 @@
-import { Pagination, Typography } from "antd";
-import { useContext } from "react";
+import { Pagination, Typography } from 'antd';
+import { useContext } from 'react';
 
-import { TimeTable } from "~/providers/TimeTableProvider";
-import autoGenTimeTables from "~/utils/autoGenTimeTables";
+import { TimeTable } from '~/providers/TimeTableProvider';
+import autoGenTimeTables from '~/utils/autoGenTimeTables';
 
-import GroupTable from "../GroupTable";
+import GroupTable from '../GroupTable';
 
 const GroupTableList = () => {
 	const { courses, changePage, selectedPage } = useContext(TimeTable);

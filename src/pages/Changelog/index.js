@@ -1,9 +1,9 @@
-import { HistoryOutlined } from "@ant-design/icons";
-import { Avatar, Divider, List, Typography, notification } from "antd";
-import { Content } from "antd/lib/layout/layout";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { HistoryOutlined } from '@ant-design/icons';
+import { Avatar, Divider, List, Typography, notification } from 'antd';
+import { Content } from 'antd/lib/layout/layout';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 const Changelog = () => {
 	const [logList, setLogList] = useState([]);
@@ -14,13 +14,13 @@ const Changelog = () => {
 			try {
 				setLoading(true);
 				const res = await axios.get(
-					"https://api.github.com/repos/thangved/w5-tools/commits"
+					'https://api.github.com/repos/thangved/w5-tools/commits'
 				);
 
 				setLogList(res.data);
 			} catch (error) {
 				notification.error({
-					message: "Lỗi",
+					message: 'Lỗi',
 					description: error.message,
 				});
 			} finally {

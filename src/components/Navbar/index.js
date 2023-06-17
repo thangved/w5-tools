@@ -2,13 +2,13 @@ import {
 	HistoryOutlined,
 	TableOutlined,
 	ToolOutlined,
-} from "@ant-design/icons/lib/icons";
-import { Menu } from "antd";
-import Sider from "antd/lib/layout/Sider";
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+} from '@ant-design/icons/lib/icons';
+import { Menu } from 'antd';
+import Sider from 'antd/lib/layout/Sider';
+import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import styles from "./Navbar.module.scss";
+import styles from './Navbar.module.scss';
 
 const Navbar = () => {
 	const [collapsed, setCollapsed] = useState(true);
@@ -29,26 +29,26 @@ const Navbar = () => {
 				mode="inline"
 			>
 				<Menu.Item
-					key={"/grade"}
+					key={'/grade'}
 					icon={<ToolOutlined />}
-					onClick={() => navigate("/grade")}
+					onClick={() => navigate('/grade')}
 				>
-					{!collapsed && "Tính điểm"}
+					{!collapsed && 'Tính điểm'}
 				</Menu.Item>
 				<Menu.Item
-					key={"/timetable"}
+					key={'/timetable'}
 					icon={<TableOutlined />}
-					onClick={() => navigate("/timetable")}
+					onClick={() => navigate('/timetable')}
 				>
-					{!collapsed && "Thời khóa biểu"}
+					{!collapsed && 'Thời khóa biểu'}
 				</Menu.Item>
 
 				<Menu.Item
-					key={"/changelog"}
+					key={'/changelog'}
 					icon={<HistoryOutlined />}
-					onClick={() => navigate("/changelog")}
+					onClick={() => navigate('/changelog')}
 				>
-					{!collapsed && "Nhập ký thay đổi"}
+					{!collapsed && 'Nhập ký thay đổi'}
 				</Menu.Item>
 			</Menu>
 		</Sider>

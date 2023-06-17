@@ -1,12 +1,12 @@
-import { CloudDownloadOutlined } from "@ant-design/icons";
-import { json } from "@codemirror/lang-json";
-import CodeMirror from "@uiw/react-codemirror";
-import { Button, Modal } from "antd";
-import { dracula } from "@uiw/codemirror-theme-dracula";
-import { useContext, useState } from "react";
-import { Helmet } from "react-helmet";
+import { CloudDownloadOutlined } from '@ant-design/icons';
+import { json } from '@codemirror/lang-json';
+import CodeMirror from '@uiw/react-codemirror';
+import { Button, Modal } from 'antd';
+import { dracula } from '@uiw/codemirror-theme-dracula';
+import { useContext, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
-import { TimeTable } from "~/providers/TimeTableProvider";
+import { TimeTable } from '~/providers/TimeTableProvider';
 
 const ExportJson = ({ groups }) => {
 	const { year, semester } = useContext(TimeTable);
@@ -28,7 +28,7 @@ const ExportJson = ({ groups }) => {
 
 	if (window.prettier) {
 		formatted = window.prettier.format(JSON.stringify(data), {
-			parser: "json",
+			parser: 'json',
 			plugins: window.prettierPlugins,
 			useTabs: true,
 			tabWidth: 4,

@@ -1,16 +1,16 @@
-import { Layout, Spin, Typography, App as AntdApp } from "antd";
-import { Content, Footer, Header } from "antd/lib/layout/layout";
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Layout, Spin, Typography, App as AntdApp } from 'antd';
+import { Content, Footer, Header } from 'antd/lib/layout/layout';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import "./App.css";
-import styles from "./App.module.scss";
-import Navbar from "~/components/Navbar";
-import Changelog from "~/pages/Changelog";
-import Home from "~/pages/Home/Home";
+import './App.css';
+import styles from './App.module.scss';
+import Navbar from '~/components/Navbar';
+import Changelog from '~/pages/Changelog';
+import Home from '~/pages/Home/Home';
 
-const Grade = lazy(() => import("~/pages/Grade"));
-const TimeTable = lazy(() => import("~/pages/TimeTable"));
+const Grade = lazy(() => import('~/pages/Grade'));
+const TimeTable = lazy(() => import('~/pages/TimeTable'));
 
 function App() {
 	return (
@@ -18,15 +18,15 @@ function App() {
 			<BrowserRouter>
 				<Layout
 					style={{
-						minHeight: "100vh",
-						display: "flex",
-						flexDirection: "row"
+						minHeight: '100vh',
+						display: 'flex',
+						flexDirection: 'row',
 					}}
 				>
 					<Navbar />
-					<Layout style={{ flex: 1, overflow: "hidden" }}>
+					<Layout style={{ flex: 1, overflow: 'hidden' }}>
 						<Header />
-						<Content style={{ overflow: "hidden" }}>
+						<Content style={{ overflow: 'hidden' }}>
 							<Suspense
 								fallback={
 									<div className={styles.fallback}>
@@ -48,7 +48,7 @@ function App() {
 								</Routes>
 							</Suspense>
 						</Content>
-						<Layout style={{ width: "100%" }}>
+						<Layout style={{ width: '100%' }}>
 							<Footer>
 								<Typography.Text>
 									&copy; {new Date().getFullYear()} W5 TEAM.
@@ -57,14 +57,14 @@ function App() {
 								</Typography.Text>
 
 								<Typography.Text>
-									Dev by{" "}
+									Dev by{' '}
 									<a
 										target="_blank"
 										rel="noreferrer"
 										href="https://fb.com/thangved"
 									>
 										Minh Thang
-									</a>{" "}
+									</a>{' '}
 									(thangved)
 									<br />
 								</Typography.Text>

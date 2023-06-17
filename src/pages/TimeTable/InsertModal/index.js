@@ -1,8 +1,8 @@
-import { Alert, Descriptions, message, Select } from "antd";
-import Modal from "antd/lib/modal/Modal";
-import { useContext, useEffect, useState } from "react";
-import { TimeTable } from "~/providers/TimeTableProvider";
-import request from "~/utils/request";
+import { Alert, Descriptions, message, Select } from 'antd';
+import Modal from 'antd/lib/modal/Modal';
+import { useContext, useEffect, useState } from 'react';
+import { TimeTable } from '~/providers/TimeTableProvider';
+import request from '~/utils/request';
 
 const InsertModal = ({ open, courseKey, data, onClose = () => {} }) => {
 	const { year, semester, addGroup } = useContext(TimeTable);
@@ -30,11 +30,11 @@ const InsertModal = ({ open, courseKey, data, onClose = () => {} }) => {
 			onCancel={onClose}
 			onOk={() => {
 				if (!selected)
-					return message.error("Vui lòng chọn nhóm học phần!");
+					return message.error('Vui lòng chọn nhóm học phần!');
 				addGroup(selected);
 				onClose();
 			}}
-			okButtonProps={{ id: "ok-button" }}
+			okButtonProps={{ id: 'ok-button' }}
 		>
 			<h2>{data.name}</h2>
 			<Descriptions>
@@ -52,7 +52,7 @@ const InsertModal = ({ open, courseKey, data, onClose = () => {} }) => {
 						value={selected}
 						placeholder="Nhóm học phần"
 						style={{
-							width: "100%",
+							width: '100%',
 						}}
 						onChange={(value) => setSelected(JSON.parse(value))}
 					>
@@ -61,10 +61,10 @@ const InsertModal = ({ open, courseKey, data, onClose = () => {} }) => {
 								value={JSON.stringify(group)}
 								key={group.class}
 							>
-								{group.class} - Nhóm {group.id}:{" "}
+								{group.class} - Nhóm {group.id}:{' '}
 								{group.time
 									.map(({ day }) => `Thứ ${day}`)
-									.join(", ")}{" "}
+									.join(', ')}{' '}
 								Còn lại: {group.available}
 							</Select.Option>
 						))}

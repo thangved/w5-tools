@@ -1,8 +1,8 @@
-import { Col, Row } from "antd";
-import { Helmet } from "react-helmet";
-import GradeProvider from "~/providers/GradeProvider";
-import CoursesTable from "./CoursesTable";
-import Search from "./Search/index";
+import { Col, Row } from 'antd';
+import { Helmet } from 'react-helmet';
+import GradeProvider from '~/providers/GradeProvider';
+import CoursesTable from './CoursesTable';
+import Search from './Search/index';
 
 const Grade = () => {
 	return (

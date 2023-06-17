@@ -1,16 +1,16 @@
-import { SearchOutlined } from "@ant-design/icons/lib/icons";
-import { Button, Form, Input, List, message, Spin, Tour } from "antd";
-import { useState } from "react";
+import { SearchOutlined } from '@ant-design/icons/lib/icons';
+import { Button, Form, Input, List, message, Spin, Tour } from 'antd';
+import { useState } from 'react';
 
-import RequestAddCourseModal from "~/components/RequestAddCourseModal";
-import request from "~/utils/request";
-import InsertModal from "../InsertModal/index";
-import tourSteps from "./tourSteps";
+import RequestAddCourseModal from '~/components/RequestAddCourseModal';
+import request from '~/utils/request';
+import InsertModal from '../InsertModal/index';
+import tourSteps from './tourSteps';
 
 const Search = () => {
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(false);
-	const [keyword, setKeyword] = useState("");
+	const [keyword, setKeyword] = useState('');
 	const [searched, setSearched] = useState(false);
 	const [insert, setInsert] = useState({
 		visible: false,
@@ -21,10 +21,10 @@ const Search = () => {
 
 	const onSearch = async () => {
 		if (keyword.length < 3)
-			return message.warning("Vui lòng nhập ít nhất 3 ký tự");
+			return message.warning('Vui lòng nhập ít nhất 3 ký tự');
 		if (loading) return;
 
-		const hideMessage = message.loading("Đang tìm kiếm học phần", 0);
+		const hideMessage = message.loading('Đang tìm kiếm học phần', 0);
 		try {
 			setLoading(true);
 			const res = await request.get(`courses/search/${keyword}`);
@@ -41,7 +41,7 @@ const Search = () => {
 	};
 
 	return (
-		<Form style={{ width: "100%" }}>
+		<Form style={{ width: '100%' }}>
 			<Button
 				style={{ marginBottom: 5 }}
 				size="small"
@@ -50,8 +50,8 @@ const Search = () => {
 			>
 				Hướng dẫn
 			</Button>
-			<Form.Item style={{ width: "100%" }}>
-				<Input.Group style={{ width: "100%" }} compact>
+			<Form.Item style={{ width: '100%' }}>
+				<Input.Group style={{ width: '100%' }} compact>
 					<Input
 						id="search-container"
 						autoFocus
@@ -61,7 +61,7 @@ const Search = () => {
 						placeholder="Tìm kiếm học phần"
 						onChange={(event) => setKeyword(event.target.value)}
 						onKeyPress={(event) => {
-							if (event.key === "Enter") onSearch();
+							if (event.key === 'Enter') onSearch();
 						}}
 					/>
 					<Button
@@ -79,13 +79,13 @@ const Search = () => {
 				{loading && (
 					<div
 						style={{
-							width: "100%",
-							height: "100%",
-							position: "absolute",
-							display: "flex",
-							justifyContent: "center",
-							alignItems: "center",
-							background: "#ffffff90",
+							width: '100%',
+							height: '100%',
+							position: 'absolute',
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							background: '#ffffff90',
 							zIndex: 100,
 						}}
 					>

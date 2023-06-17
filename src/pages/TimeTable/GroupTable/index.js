@@ -1,16 +1,16 @@
-import { PrinterFilled } from "@ant-design/icons";
-import { Button, Typography } from "antd";
-import React, { useCallback, useRef } from "react";
-import { useContext } from "react";
-import ReactToPrint from "react-to-print";
+import { PrinterFilled } from '@ant-design/icons';
+import { Button, Typography } from 'antd';
+import React, { useCallback, useRef } from 'react';
+import { useContext } from 'react';
+import ReactToPrint from 'react-to-print';
 
-import { initMatrix } from "~/providers/initMatrix";
-import { TimeTable } from "~/providers/TimeTableProvider";
-import convertGroup from "~/utils/convertGroup";
+import { initMatrix } from '~/providers/initMatrix';
+import { TimeTable } from '~/providers/TimeTableProvider';
+import convertGroup from '~/utils/convertGroup';
 
-import ExportJson from "./ExportJson";
-import styles from "./GroupTable.module.scss";
-import TableCell from "./TableCell";
+import ExportJson from './ExportJson';
+import styles from './GroupTable.module.scss';
+import TableCell from './TableCell';
 
 const GroupTable = ({ timeTable = [] }) => {
 	const { courses } = useContext(TimeTable);
@@ -45,11 +45,11 @@ const GroupTable = ({ timeTable = [] }) => {
 	return (
 		<div
 			style={{
-				overflowX: "auto",
+				overflowX: 'auto',
 			}}
 			id="timetable-main"
 		>
-			<div style={{ padding: "10px 0" }}>
+			<div style={{ padding: '10px 0' }}>
 				<ReactToPrint
 					trigger={reactPrintTrigger}
 					content={reactPrintContent}
@@ -59,16 +59,16 @@ const GroupTable = ({ timeTable = [] }) => {
 			</div>
 			<div className={styles.tableWrap} ref={tableRef}>
 				<div className={styles.copy}>
-					&copy; {new Date().getFullYear()}{" "}
+					&copy; {new Date().getFullYear()}{' '}
 					<a
 						target="_blank"
 						rel="noreferrer"
 						href="//tools.w5team.com"
 					>
 						tools.w5team.com
-					</a>{" "}
+					</a>{' '}
 					All rights reserved <br />
-					Dev by{" "}
+					Dev by{' '}
 					<a
 						target="_blank"
 						rel="noreferrer"
@@ -79,7 +79,7 @@ const GroupTable = ({ timeTable = [] }) => {
 				</div>
 
 				<div className={styles.title}>
-					<Typography.Title level={1} style={{ textAlign: "center" }}>
+					<Typography.Title level={1} style={{ textAlign: 'center' }}>
 						Thời khóa biểu
 					</Typography.Title>
 				</div>

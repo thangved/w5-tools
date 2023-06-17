@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useRef } from 'react';
 
-import styles from "./GroupTable.module.scss";
+import styles from './GroupTable.module.scss';
 
 const TableCell = ({ cell, rIndex }) => {
 	const heightRef = useRef();

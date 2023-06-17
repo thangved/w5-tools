@@ -1,7 +1,7 @@
-import { Button, Popconfirm, Select, Spin, Table, Typography } from "antd";
-import { useContext } from "react";
+import { Button, Popconfirm, Select, Spin, Table, Typography } from 'antd';
+import { useContext } from 'react';
 
-import { TimeTable } from "~/providers/TimeTableProvider";
+import { TimeTable } from '~/providers/TimeTableProvider';
 
 const CourseList = () => {
 	const { courses, deleteCourse, activeGroups, synced } =
@@ -9,22 +9,22 @@ const CourseList = () => {
 
 	const columns = [
 		{
-			title: "Mã học phần",
-			dataIndex: "detail",
-			key: "key",
+			title: 'Mã học phần',
+			dataIndex: 'detail',
+			key: 'key',
 			render: (e) => e.key,
 		},
 
 		{
-			title: "Tên học phần",
-			dataIndex: "detail",
-			key: "name",
+			title: 'Tên học phần',
+			dataIndex: 'detail',
+			key: 'name',
 			render: (e) => e.name,
 		},
 		{
-			title: "Chọn nhóm",
-			dataIndex: "groups",
-			key: "select",
+			title: 'Chọn nhóm',
+			dataIndex: 'groups',
+			key: 'select',
 			render: (groups, course) => {
 				return (
 					<Select
@@ -43,8 +43,8 @@ const CourseList = () => {
 								value={group.class}
 								key={group.class}
 							>
-								Nhóm {group.id} <br /> Thứ:{" "}
-								{group.time.map(({ day }) => day).join(", ")}
+								Nhóm {group.id} <br /> Thứ:{' '}
+								{group.time.map(({ day }) => day).join(', ')}
 							</Select.Option>
 						))}
 					</Select>
@@ -52,9 +52,9 @@ const CourseList = () => {
 			},
 		},
 		{
-			title: "Xóa",
-			dataIndex: "detail",
-			key: "delete",
+			title: 'Xóa',
+			dataIndex: 'detail',
+			key: 'delete',
 			render: ({ key }) => (
 				<Popconfirm
 					title="Bạn có muốn xóa học phần này?"
@@ -76,12 +76,12 @@ const CourseList = () => {
 	const dataSource = courses || [];
 
 	return (
-		<div style={{ overflow: "auto" }}>
+		<div style={{ overflow: 'auto' }}>
 			<Typography.Title level={4}>Danh sách học phần</Typography.Title>
 
 			{!synced && (
 				<>
-					<Spin />{" "}
+					<Spin />{' '}
 					<Typography.Text>Đang đồng bộ dữ liệu</Typography.Text>
 				</>
 			)}

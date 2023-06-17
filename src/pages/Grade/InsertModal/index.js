@@ -1,16 +1,16 @@
-import { Descriptions, InputNumber, message } from "antd";
-import { useContext, useEffect, useState } from "react";
-import Modal from "antd/lib/modal/Modal";
+import { Descriptions, InputNumber, message } from 'antd';
+import { useContext, useEffect, useState } from 'react';
+import Modal from 'antd/lib/modal/Modal';
 
-import exChange from "./ExChange";
-import { Grade } from "~/providers/GradeProvider";
+import exChange from './ExChange';
+import { Grade } from '~/providers/GradeProvider';
 
 const InsertModal = ({ open, course, onClose = () => {} }) => {
 	const { addCourses } = useContext(Grade);
 
 	const [digit, setDigit] = useState(0);
 	const [four, setFour] = useState(0);
-	const [txt, setTxt] = useState("");
+	const [txt, setTxt] = useState('');
 
 	useEffect(() => {
 		const { four, txt } = exChange(digit);
@@ -30,10 +30,10 @@ const InsertModal = ({ open, course, onClose = () => {} }) => {
 					txt,
 				});
 				onClose();
-				message.success("Đã thêm học phần.");
+				message.success('Đã thêm học phần.');
 				setDigit(10);
 			}}
-			okButtonProps={{ id: "ok-button" }}
+			okButtonProps={{ id: 'ok-button' }}
 		>
 			<h2>{course.name}</h2>
 			<h3>{course.key}</h3>
@@ -42,10 +42,10 @@ const InsertModal = ({ open, course, onClose = () => {} }) => {
 					<InputNumber
 						max={10}
 						min={0}
-						style={{ width: "100%" }}
+						style={{ width: '100%' }}
 						onChange={(value) => setDigit(value)}
 						onKeyPress={(event) => {
-							if (event.key === "Enter") {
+							if (event.key === 'Enter') {
 								addCourses({
 									...course,
 									digit,
@@ -53,7 +53,7 @@ const InsertModal = ({ open, course, onClose = () => {} }) => {
 									txt,
 								});
 								onClose();
-								message.success("Đã thêm học phần.");
+								message.success('Đã thêm học phần.');
 								setDigit(10);
 							}
 						}}

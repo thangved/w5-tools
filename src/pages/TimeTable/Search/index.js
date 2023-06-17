@@ -1,19 +1,19 @@
-import { Button, Form, Input, List, message, Select, Tour } from "antd";
-import { useContext, useEffect, useState } from "react";
-import RequestAddCourseModal from "~/components/RequestAddCourseModal";
+import { Button, Form, Input, List, message, Select, Tour } from 'antd';
+import { useContext, useEffect, useState } from 'react';
+import RequestAddCourseModal from '~/components/RequestAddCourseModal';
 
-import useDelay from "~/hooks/useDelay";
-import { TimeTable } from "~/providers/TimeTableProvider";
-import request from "~/utils/request";
+import useDelay from '~/hooks/useDelay';
+import { TimeTable } from '~/providers/TimeTableProvider';
+import request from '~/utils/request';
 
-import tourSteps from "./tourSteps";
+import tourSteps from './tourSteps';
 
 const Search = () => {
 	const { yearList, year, semester, setYear, setSemester, addCourse } =
 		useContext(TimeTable);
 
 	const [courses, setCourses] = useState([]);
-	const [keyword, setKeyword] = useState("");
+	const [keyword, setKeyword] = useState('');
 	const [searched, setSearched] = useState(false);
 
 	const [openTour, setOpenTour] = useState(false);
@@ -23,7 +23,7 @@ const Search = () => {
 	useEffect(() => {
 		if (!delayKeyword) return;
 		const search = async () => {
-			const hideMessage = message.loading("Đang tìm kiếm học phần", 0);
+			const hideMessage = message.loading('Đang tìm kiếm học phần', 0);
 			try {
 				const res = await request.get(`courses/search/${delayKeyword}`);
 
@@ -74,7 +74,7 @@ const Search = () => {
 	return (
 		<Form
 			style={{
-				width: "100%",
+				width: '100%',
 				padding: 10,
 			}}
 		>
@@ -88,7 +88,7 @@ const Search = () => {
 			</Button>
 			<Form.Item
 				style={{
-					width: "100%",
+					width: '100%',
 				}}
 			>
 				<Input.Group>
@@ -99,7 +99,7 @@ const Search = () => {
 						value={keyword}
 						placeholder="Nhập tên hoặc mã học phần"
 						style={{
-							width: "100%",
+							width: '100%',
 						}}
 						onChange={(event) => setKeyword(event.target.value)}
 					/>

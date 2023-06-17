@@ -8,18 +8,18 @@ import {
 	Image,
 	Modal,
 	Row,
-	Typography
-} from "antd";
-import { Helmet } from "react-helmet";
-import { FacebookFilled, InfoCircleFilled } from "@ant-design/icons";
-import Link from "antd/es/typography/Link";
-import { useState } from "react";
-import cryImage from "~/assets/images/cry.jpg";
-import ctuExtensionIcon from "~/assets/images/icon-384x384.png";
-import TimeTableProvider from "~/providers/TimeTableProvider";
-import CourseList from "./CourseList";
-import GroupTableList from "./GroupTableList";
-import Search from "./Search";
+	Typography,
+} from 'antd';
+import { Helmet } from 'react-helmet';
+import { FacebookFilled, InfoCircleFilled } from '@ant-design/icons';
+import Link from 'antd/es/typography/Link';
+import { useState } from 'react';
+import cryImage from '~/assets/images/cry.jpg';
+import ctuExtensionIcon from '~/assets/images/icon-384x384.png';
+import TimeTableProvider from '~/providers/TimeTableProvider';
+import CourseList from './CourseList';
+import GroupTableList from './GroupTableList';
+import Search from './Search';
 
 const TimeTable = () => {
 	const [closed, setClosed] = useState(false);
@@ -30,7 +30,7 @@ const TimeTable = () => {
 				<Helmet>
 					<title>Công cụ sắp thời khóa biểu | w5 tools</title>
 				</Helmet>
-				<Row style={{ overflow: "hidden" }}>
+				<Row style={{ overflow: 'hidden' }}>
 					<Col lg={24} md={24} xs={24} style={{ padding: 5 }}>
 						<Alert
 							type="error"
@@ -48,7 +48,7 @@ const TimeTable = () => {
 					<Col lg={8} md={8} xs={24}>
 						<Search />
 					</Col>
-					<Col lg={16} md={16} xs={24} style={{ overflow: "hidden" }}>
+					<Col lg={16} md={16} xs={24} style={{ overflow: 'hidden' }}>
 						<CourseList />
 						<GroupTableList />
 					</Col>
