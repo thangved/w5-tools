@@ -7,7 +7,7 @@
 		"@codemirror/lang-json": "^6.0.0",
 		"@codemirror/language": "^6.7.0",
 		"@testing-library/jest-dom": "^6.0.0",
-		"@testing-library/react": "^12.1.5",
+		"@testing-library/react": "^16.1.0",
 		"@testing-library/user-event": "^14.4.3",
 		"@uiw/codemirror-theme-dracula": "^4.20.2",
 		"@uiw/react-codemirror": "^4.20.2",
